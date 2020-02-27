@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import axios from "axios";
 
 const Register = styled.div`
   width: 30vw;
@@ -15,10 +16,11 @@ const Register = styled.div`
 `;
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
-  const [users, setUsers] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     console.log("status has changed!", status);
+    status && setUserData(userData => [...userData, status]);
   }, [status]);
 
   return (
@@ -63,6 +65,18 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           <button type="submit">Register</button>
         </Form>
       </Register>
+      
+      {userData.map(user => {
+        return (
+          <ul key={user.id}>
+            <li>Fullname: {user.fullname}</li>
+            <li>Username: {user.username}</li>
+            <li>Password: {user.password}</li>
+            <li>Email: {user.email}</li>
+            <li>City: {user.city}</li>
+          </ul>
+        );
+      })}
     </div>
   );
 };
@@ -84,8 +98,16 @@ const FormikRegistrationForm = withFormik({
     email: Yup.string().required("Kindly include your email address"),
     city: Yup.string().required("Kindly let us know which city you reside in!")
   }),
-  handleSubmit(values, formikBag) {
+  handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting!", values);
+    axios
+      .post("https://reqres.in/api/users/", values)
+      .then(res => {
+        console.log("success", res);
+        setStatus(res.data);
+        resetForm();
+      })
+      .catch(err => console.log(err.response));
   }
 })(RegistrationForm);
 

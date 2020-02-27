@@ -1,12 +1,19 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Link } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationFrom";
+import LoginForm from "./components/LoginForm";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to our Co-Make React App!</h1>
-      <RegistrationForm />
+      {/* <h1>Welcome to our Co-Make React App!</h1> */}
+      <Navbar />
+      <Route exact path="/" component={LoginForm} />
+      <Route path="/register" render={() => {
+        return <RegistrationForm />
+      }} />
     </div>
   );
 }
