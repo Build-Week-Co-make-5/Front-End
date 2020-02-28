@@ -15,11 +15,19 @@ const LoginForm = ({ values, errors, touched, status }) => {
   return (
     <div>
       <Form>
-        <Field type="text" name="username" placeholder="username" />
+        <Field 
+          type="text" 
+          name="username" 
+          placeholder="username" 
+        />
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
         )}
-        <Field type="password" name="password" placeholder="password" />
+        <Field 
+          type="password" 
+          name="password" 
+          placeholder="password" 
+        />
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
