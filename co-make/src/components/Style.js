@@ -16,3 +16,9 @@ export const Division = styled.div`
   width: 80%;
   justify-content: space-between;
 `;
+
+export const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+
+`;
