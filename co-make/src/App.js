@@ -5,7 +5,6 @@ import RegistrationForm from "./components/RegistrationFrom";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 import IssueList from './components/IssueList';
-import AddIssue from "./components/AddIssue";
 import { IssueProvider } from './IssueContext';
 
 import "./App.css";
@@ -16,8 +15,6 @@ function App() {
       <IssueProvider>
         <div className="App">
           <Navbar />
-          <IssueList />
-          <AddIssue />
           <Route exact path="/" component={LoginForm} />
           <Route
             path="/register"
@@ -25,6 +22,9 @@ function App() {
               return <RegistrationForm />;
             }}
           />
+          <Route path="/main-page" render={() => {
+            return <IssueList />
+          }} />
         </div>
       </IssueProvider>
     </Router>

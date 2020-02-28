@@ -14,6 +14,7 @@ const Navbar = () => {
         <h3>Neighborhood Issues: {issues.length}</h3>
         <Link to="/">Login</Link>
         <Link to="/register">Register</Link>
+        <Link to="/main-page">Forum</Link>
       </Division>
     </Navigation>
   );

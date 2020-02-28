@@ -22,11 +22,8 @@ const LoginForm = ({ values, errors, touched, status }) => {
           name="username"
           placeholder="username"
         />
-        {touched.username && 
-          errors.username && (
-          <p className="errors">
-            {errors.username}
-          </p>
+        {touched.username && errors.username && (
+          <p className="errors">{errors.username}</p>
         )}
         <label htmlFor="password">Password:</label>
         <Field
@@ -59,7 +56,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
           />
           <span className="checkmark" />
         </label>
-          <Field as="textarea" type="text" name="notes" placeholder="Notes"/>
+        <Field as="textarea" type="text" name="notes" placeholder="Notes" />
         <button type="submit">Login</button>
       </Form>
 
@@ -100,7 +97,7 @@ const FormikLoginForm = withFormik({
         resetForm();
       })
       .catch(err => console.log(err.reponse));
-  },
+  }
 })(LoginForm);
 
 // replaced LoginFrom with FormikLoginForm
