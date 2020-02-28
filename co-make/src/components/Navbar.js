@@ -1,18 +1,21 @@
-import React from "react";
+// Yen
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { NavContainer, Nav } from "./Style";
+import { Navigation, Division } from "./Style";
+import { IssueContext } from '../IssueContext';
 
 const Navbar = () => {
+  const [issues, setIssues] = useContext(IssueContext);
+
   return (
-    <div className="navigation">
-      <NavContainer>
+    <Navigation className="navigation">
+      <Division>
         <h2>Co-Make</h2>
-        <Nav>
-          <Link to="/">Login</Link>
-          <Link to="/register">Register</Link>
-        </Nav>
-      </NavContainer>
-    </div>
+        <h3>Neighborhood Issues: {issues.length}</h3>
+        <Link to="/">Login</Link>
+        <Link to="/register">Register</Link>
+      </Division>
+    </Navigation>
   );
 };
 
