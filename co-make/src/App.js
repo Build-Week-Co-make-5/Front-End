@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { Route, Link } from "react-router-dom";
-import RegistrationForm from "./components/RegistrationFrom";
+import { Route } from "react-router-dom";
+import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 

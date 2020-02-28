@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
+import { Register } from "./Style";
 import axios from "axios";
-
-const Register = styled.div`
-  width: 30vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  background: lightgrey;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 40vh;
-`;
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState([]);
@@ -27,45 +16,30 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
     <div className="register-form">
       <Register>
         <Form>
-          <label>
-            Full Name:
-            <Field type="text" name="fullname" placeholder="fullname" />
-          </label>
+          <Field type="text" name="fullname" placeholder="fullname" />
           {touched.fullname && errors.fullname && (
             <p className="errors">{errors.fullname}</p>
           )}
-          <label>
-            Username:
-            <Field type="text" name="username" placeholder="username" />
-          </label>
+          <Field type="text" name="username" placeholder="username" />
           {touched.username && errors.username && (
             <p className="errors">{errors.username}</p>
           )}
-          <label>
-            Password:
-            <Field type="password" name="password" placeholder="password" />
-          </label>
+          <Field type="password" name="password" placeholder="password" />
           {touched.password && errors.password && (
             <p className="errors">{errors.password}</p>
           )}
-          <label>
-            Email:
-            <Field type="text" name="email" placeholder="email" />
-          </label>
+          <Field type="email" name="email" placeholder="email" />
           {touched.email && errors.email && (
             <p className="errors">{errors.email}</p>
           )}
-          <label>
-            City:
-            <Field type="text" name="city" placeholder="city" />
-          </label>
+          <Field type="text" name="city" placeholder="city" />
           {touched.city && errors.city && (
             <p className="errors">{errors.city}</p>
           )}
           <button type="submit">Register</button>
         </Form>
       </Register>
-      
+
       {userData.map(user => {
         return (
           <ul key={user.id}>
@@ -101,7 +75,7 @@ const FormikRegistrationForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting!", values);
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/", values)
       .then(res => {
         console.log("success", res);
         setStatus(res.data);

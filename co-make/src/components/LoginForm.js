@@ -13,7 +13,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
   }, [status]);
 
   return (
-    <div>
+    <div className="login-form">
       <Form>
         <Field type="text" name="username" placeholder="username" />
         {touched.username && errors.username && (
@@ -52,7 +52,7 @@ const FormikLoginForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
     axios
-      .post("https://reqres.in/api/users?page=2", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/", values)
       .then(res => {
         console.log("success", res);
         setStatus(res.data);
