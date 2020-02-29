@@ -10,6 +10,7 @@ import IssueList from './components/IssueList';
 import AddIssue from "./components/AddIssue";
 import About from "./components/About";
 import Issue from "./components/Issue";
+// import { IssueProvider } from './IssueContext';
 
 import "./App.css";
 

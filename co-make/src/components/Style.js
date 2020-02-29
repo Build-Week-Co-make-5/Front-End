@@ -1,24 +1,29 @@
 // Yen
 import styled from "styled-components";
 
+// Navbar.js
 export const Navigation = styled.div`
-  display: flex;
-  flex-direction: row;
-  justfy-content: flex-end;
   height: 4rem;
   background: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
   width: 100%;
 `;
 
 export const Division = styled.div`
   display: flex;
-  background: blue;
+  // background: blue;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 `;
 
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-
+// LoginForm.js
+export const Button = styled.button`
+  width: 35%;
+  margin: 0 auto;
+  border-radius: 20px;
 `;
+
