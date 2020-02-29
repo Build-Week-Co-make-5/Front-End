@@ -11,8 +11,12 @@ const IssueList = () => {
       <h1>Issue List</h1>
       {issues.map(issue => (
         <Issue 
-          title={issue.title} 
-          priority={issue.priority} 
+          issue_name={issue.issue_name}
+          issue_location={issue.issue_location}
+          category={issue.category}
+          priority={issue.priority}
+          imgURL={issue.imgURL} 
+          issue_details={issue.issue_details}
           key={issue.id} 
         />
       ))}
