@@ -1,12 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { IssueProvider } from "./IssueContext";
 
 import RegistrationForm from "./components/RegistrationFrom";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 import IssueList from './components/IssueList';
 import AddIssue from "./components/AddIssue";
-import { IssueProvider } from './IssueContext';
+import About from "./components/About";
+import Issue from "./components/Issue";
 
 import "./App.css";
 
@@ -16,8 +18,10 @@ function App() {
       <IssueProvider>
         <div className="App">
           <Navbar />
-          <IssueList />
-          <AddIssue />
+          <Route path="/about" component={About} />
+          <Route path="/issue-list" component={IssueList} />
+          <Route path="/issue" component={Issue} />
+          <Route path="/addIssue" component={AddIssue} />
           <Route exact path="/" component={LoginForm} />
           <Route
             path="/register"

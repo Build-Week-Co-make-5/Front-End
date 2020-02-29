@@ -7,13 +7,13 @@ export const Navigation = styled.div`
   justfy-content: flex-end;
   height: 4rem;
   background: lightgrey;
-  width: 80%;
+  width: 100%;
 `;
 
 export const Division = styled.div`
   display: flex;
   background: blue;
-  width: 80%;
+  width: 100%;
   justify-content: space-between;
 `;
 
