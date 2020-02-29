@@ -22,7 +22,7 @@ function App() {
               return <RegistrationForm />;
             }}
           />
-          <Route path="/main-page" render={() => {
+          <Route path="/main" render={() => {
             return <IssueList />
           }} />
         </div>

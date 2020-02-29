@@ -9,25 +9,41 @@ const SearchForm = ({ issues }) => {
     setSearchTerm(e.target.value);
   };
 
-//   useEffect(() => {
-//     const results = issues.filter(issue => {
-//       return issue.title.toLowerCase().includes(searchTerm.toLowerCase());
-//     });
+  useEffect(() => {
+    const results = issues.filter(issue => {
+      return issue.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
-//     setSearchResults(results);
-//   }, [searchTerm, issues]);
+    setSearchResults(results);
+  }, [searchTerm, issues]);
 
   return (
+    // console.log("searchResults", searchResults),
     <div>
       <section className="search-form">
         <form>
-            <input id="title" type="text" name="textfield" placeholder="Search" onChange={handleChange} value={searchTerm} />
+          <input
+            id="title"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            onChange={handleChange}
+            value={searchTerm}
+          />
         </form>
       </section>
       <div className="issue-list">
-        {/* {searchResults.map(issue => {
-            return <Issue title={issue.title} priority={issue.priority} />
-        })} */}
+        {/*
+          {searchResults.map(issue => {
+          return (
+            <Issue
+              title={issue.title}
+              priority={issue.priority}
+              key={issue.id}
+            />
+          );
+        })}
+        */}
       </div>
     </div>
   );

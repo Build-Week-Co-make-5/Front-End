@@ -13,9 +13,8 @@ const LoginForm = ({ values, errors, touched, status }) => {
   }, [status]);
 
   return (
-    <div>
-      <Form className="login-form">
-        <label htmlFor="username">Username:</label>
+    <div className="login-form">
+      <Form>
         <Field
           id="username"
           type="text"
@@ -25,7 +24,6 @@ const LoginForm = ({ values, errors, touched, status }) => {
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
         )}
-        <label htmlFor="password">Password:</label>
         <Field
           id="password"
           type="password"
@@ -35,24 +33,26 @@ const LoginForm = ({ values, errors, touched, status }) => {
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <label htmlFor="category">Category:</label>
-        <Field className="issue-select" as="select" name="category">
-          <option disabled value="Choose an option" />
-          <option value="neighbor">Neighbor</option>
-          <option value="board-member">Board Member</option>
-          <option value="parent">Parent</option>
-          <option value="police">Police</option>
-          <option value="witness">Witness</option>
-          <option value="mayor">Mayor</option>
-          <option value="social-worker">Social Worker</option>
-        </Field>
+        <label htmlFor="category">
+          Category:
+          <Field className="issue-select" as="select" name="category">
+            <option disabled>Choose an option</option>
+            <option value="neighbor">Neighbor</option>
+            <option value="board-member">Board Member</option>
+            <option value="parent">Parent</option>
+            <option value="police">Police</option>
+            <option value="witness">Witness</option>
+            <option value="mayor">Mayor</option>
+            <option value="social-worker">Social Worker</option>
+          </Field>
+        </label>
         <label htmlFor="voting" className="checkbox-container">
           Voting
           <Field
             id="voting"
             type="checkbox"
             name="voting"
-            check={values.voting}
+            checked={values.voting}
           />
           <span className="checkmark" />
         </label>
@@ -65,6 +65,9 @@ const LoginForm = ({ values, errors, touched, status }) => {
           <ul key={user.id}>
             <li>Username: {user.username}</li>
             <li>Password: {user.password}</li>
+            <li>Category: {user.category}</li>
+            <li>Voting: {user.voting}</li>
+            <li>Notes: {user.notes}</li>
           </ul>
         );
       })}
@@ -90,7 +93,7 @@ const FormikLoginForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
     axios
-      .post("https://bw-pt-co-make5.herokuapp.com/", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/issues", values)
       .then(res => {
         console.log("success", res);
         setStatus(res.data);

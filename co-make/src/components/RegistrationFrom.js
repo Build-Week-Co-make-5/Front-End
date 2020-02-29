@@ -76,7 +76,7 @@ const FormikRegistrationForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting!", values);
     axios
-      .post("https://bw-pt-co-make5.herokuapp.com/", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/issues", values)
       .then(res => {
         console.log("success", res);
         setStatus(res.data);

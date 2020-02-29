@@ -1,19 +1,30 @@
-// // Navbar.js
-// export const NavContainer = styled.div`
-//     display: flex;
-//     justify-content: space-between;
-//     width: 90%;
-//     margin: 0 auto;
-// `;
-
-// export const Nav = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 20%;
-// `;
-
 // Yen
 import styled from "styled-components";
+
+// Navbar.js
+export const Navigation = styled.div`
+  height: 4rem;
+  background: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+`;
+
+export const Division = styled.div`
+  display: flex;
+  width: 20%;
+  // background: black;
+  justify-content: space-between;
+`;
+
+// LoginForm.js
+// export const Login = styled.div`
+//   width: 50%;
+//   margin: 1rem auto 0;
+//   display: flex;
+//   flex-direction: column;
+// `;
 
 // RegistrationForm.js
 export const Register = styled.div`
@@ -25,26 +36,4 @@ export const Register = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 40vh;
-`;
-
-export const Navigation = styled.div`
-  display: flex;
-  flex-direction: row;
-  justfy-content: flex-end;
-  height: 4rem;
-  background: lightgrey;
-  width: 80%;
-`;
-
-export const Division = styled.div`
-  display: flex;
-  // background: blue;
-  width: 80%;
-  justify-content: space-between;
-`;
-
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-
 `;
