@@ -10,13 +10,17 @@ const IssueList = () => {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    axios
+    const getIssues = () => {
+      axios
       .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
       .then(res => {
         console.log("res", res);
-        // setIssues(res.data);
+        setIssues(res.data.issue);
       })
       .catch(error => console.log(error));
+    };
+
+    getIssues();
   }, []);
 
   return (
