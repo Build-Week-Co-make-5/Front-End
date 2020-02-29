@@ -5,35 +5,26 @@ import styled from "styled-components";
 export const Navigation = styled.div`
   height: 4rem;
   background: lightgrey;
-<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-=======
   width: 100%;
->>>>>>> 28d1a7a94bf166bf5d2e7ffbade10dc6ff7bb9db
 `;
 
 export const Division = styled.div`
   display: flex;
-<<<<<<< HEAD
-  width: 20%;
-  // background: black;
-=======
   background: blue;
   width: 100%;
->>>>>>> 28d1a7a94bf166bf5d2e7ffbade10dc6ff7bb9db
   justify-content: space-between;
 `;
 
 // LoginForm.js
-// export const Login = styled.div`
-//   width: 50%;
-//   margin: 1rem auto 0;
-//   display: flex;
-//   flex-direction: column;
-// `;
+export const LoginButton = styled.button`
+  width: 35%;
+  margin: 0 auto;
+  border-radius: 20px;
+`;
 
 // RegistrationForm.js
 export const Register = styled.div`

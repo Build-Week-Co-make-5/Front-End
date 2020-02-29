@@ -11,3 +11,24 @@
   color: white;
 }
 
+.login-form {
+  background-color: lightgrey;
+  width: 40vw;
+  margin: 5rem auto 0;
+  padding: 1rem 0;
+  border-radius: 20px;
+}
+
+.login-format {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.login-format .input {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 10px;
+}
