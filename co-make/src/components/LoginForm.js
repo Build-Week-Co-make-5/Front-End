@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import {LoginButton} from "./Style";
+import { Button } from "./Style";
 
 const LoginForm = ({ values, errors, touched, status }) => {
   const [loginInfo, setLoginInfo] = useState([]);
@@ -59,8 +59,14 @@ const LoginForm = ({ values, errors, touched, status }) => {
           />
           <span className="checkmark" />
         </label>
-        <Field as="textarea" type="text" name="notes" placeholder="Notes" className="input" />
-        <LoginButton type="submit">Login</LoginButton>
+        <Field
+          as="textarea"
+          type="text"
+          name="notes"
+          placeholder="Notes"
+          className="input"
+        />
+        <Button type="submit">Login</Button>
       </Form>
 
       {loginInfo.map(user => {

@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Register } from "./Style";
 import axios from "axios";
+import {Button} from "./Style";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState([]);
@@ -15,31 +15,27 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
 
   return (
     <div className="register-form">
-      <Register>
-        <Form>
-          <Field type="text" name="fullname" placeholder="fullname" />
-          {touched.fullname && errors.fullname && (
-            <p className="errors">{errors.fullname}</p>
-          )}
-          <Field type="text" name="username" placeholder="username" />
-          {touched.username && errors.username && (
-            <p className="errors">{errors.username}</p>
-          )}
-          <Field type="password" name="password" placeholder="password" />
-          {touched.password && errors.password && (
-            <p className="errors">{errors.password}</p>
-          )}
-          <Field type="email" name="email" placeholder="email" />
-          {touched.email && errors.email && (
-            <p className="errors">{errors.email}</p>
-          )}
-          <Field type="text" name="city" placeholder="city" />
-          {touched.city && errors.city && (
-            <p className="errors">{errors.city}</p>
-          )}
-          <button type="submit">Register</button>
-        </Form>
-      </Register>
+      <Form className="register-format">
+        <Field type="text" name="fullname" placeholder="fullname" className="input" />
+        {touched.fullname && errors.fullname && (
+          <p className="errors">{errors.fullname}</p>
+        )}
+        <Field type="text" name="username" placeholder="username" className="input" />
+        {touched.username && errors.username && (
+          <p className="errors">{errors.username}</p>
+        )}
+        <Field type="password" name="password" placeholder="password" className="input" />
+        {touched.password && errors.password && (
+          <p className="errors">{errors.password}</p>
+        )}
+        <Field type="email" name="email" placeholder="email" className="input" />
+        {touched.email && errors.email && (
+          <p className="errors">{errors.email}</p>
+        )}
+        <Field type="text" name="city" placeholder="city" className="input" />
+        {touched.city && errors.city && <p className="errors">{errors.city}</p>}
+        <Button type="submit">Register</Button>
+      </Form>
 
       {userData.map(user => {
         return (
