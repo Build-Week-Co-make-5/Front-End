@@ -5,16 +5,25 @@ import styled from "styled-components";
 export const Navigation = styled.div`
   height: 4rem;
   background: lightgrey;
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+=======
+  width: 100%;
+>>>>>>> 28d1a7a94bf166bf5d2e7ffbade10dc6ff7bb9db
 `;
 
 export const Division = styled.div`
   display: flex;
+<<<<<<< HEAD
   width: 20%;
   // background: black;
+=======
+  background: blue;
+  width: 100%;
+>>>>>>> 28d1a7a94bf166bf5d2e7ffbade10dc6ff7bb9db
   justify-content: space-between;
 `;
 

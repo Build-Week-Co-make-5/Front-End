@@ -4,6 +4,7 @@ import { IssueContext } from "../IssueContext";
 import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
+import '../App.css';
 
 const IssueList = () => {
   // const [issues, setIssues] = useContext(IssueContext);
