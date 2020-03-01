@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Issue from "./Issue";
+import IssueList from "./IssueList";
 
 const SearchForm = ({ issues }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,14 +28,14 @@ const SearchForm = ({ issues }) => {
               id="title"
               type="text"
               name="textfield"
-              placeholder="Search"
+              placeholder="Search Issues"
               onChange={handleChange}
               value={searchTerm}
             />
           </form>
         </section>
-        <div className="issue-list">
-          {/* {searchResults.map(issue => {
+        {/* <div className="issue">
+          {searchResults.map(issue => {
             return (
               <Issue
                 issue_name={issue.issue_name}
@@ -47,9 +47,8 @@ const SearchForm = ({ issues }) => {
                 key={issue.id}
               />
             );
-          })} */}
-          
-        </div>
+          })}
+        </div> */}
       </div>
     )
   );

@@ -1,39 +1,49 @@
 import React, { useState, useContext, useEffect } from "react";
-import Issue from "./Issue";
 import { IssueContext } from "../IssueContext";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
+import EditIssues from "./EditIssues";
 import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
-import axios from "axios";
+
 import '../App.css';
 
 const IssueList = () => {
-  // const [issues, setIssues] = useContext(IssueContext);
-  const [issues, setIssues] = useState([]);
+  const [issues, setIssues] = useContext(IssueContext);
+
+  const [newIssue, setNewIssue] = useState({
+    issue_name: '',
+    issue_location: '',
+    category: '',
+    priority: '',
+    imgURL: '',
+    issue_details: ''
+  })
 
   useEffect(() => {
     const getIssues = () => {
-      axios
-      .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
+      axiosWithAuth()
+      .get("/api/issues")
       .then(res => {
-        console.log("res", res);
-        setIssues(res.data.issue);
+        console.log(res.data);
+        setIssues(res.data);
       })
       .catch(error => console.log(error));
     };
-
     getIssues();
-  }, []);
+  }, [newIssue]);
 
   return (
     console.log("issues", issues),
     (
-      <div>
-        <AddIssue />
-        <SearchForm issues={issues} />
-        {/* moved issues.map to SearchForm for search functionality */}
-        {/* {issues.map(issue => (
-          <Issue title={issue.title} priority={issue.priority} key={issue.id} />
-        ))} */}
+      <div className="issue-list">
+        <ul>
+          <SearchForm issues={issues} />
+          {issues.map(issue => (
+            <EditIssues title={issue.title} priority={issue.priority} key={issue.id} />
+          ))}
+          <AddIssue />
+        </ul>
       </div>
     )
   );

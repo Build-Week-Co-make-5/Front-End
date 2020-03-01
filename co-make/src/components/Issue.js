@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Issue = ({ issue_name, issue_location, category, priority, imgURL, issue_details }) => {
-  
+
   return (
     <div>
       <h3>{issue_name}</h3>

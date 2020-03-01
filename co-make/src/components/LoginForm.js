@@ -7,6 +7,7 @@ import { Button } from "./Style";
 
 const LoginForm = ({ values, errors, touched, status }) => {
   const [loginInfo, setLoginInfo] = useState([]);
+  const [isLoggingIn, setLoggingIn] = useState(true);
 
   useEffect(() => {
     console.log("status has changed", status);
@@ -37,8 +38,11 @@ const LoginForm = ({ values, errors, touched, status }) => {
           <p className="errors">{errors.password}</p>
         )}
         <label htmlFor="category">
-          Category:
-          <Field className="issue-select" as="select" name="category">
+          Choose a Category
+          <Field 
+            className="issue-select" 
+            as="select" 
+            name="category">
             <option disabled>Choose an option</option>
             <option value="neighbor">Neighbor</option>
             <option value="board-member">Board Member</option>
@@ -55,7 +59,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
             id="voting"
             type="checkbox"
             name="voting"
-            checked={values.voting}
+            check={values.voting}
           />
           <span className="checkmark" />
         </label>
@@ -85,19 +89,24 @@ const LoginForm = ({ values, errors, touched, status }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ username, password, voting }) {
+  mapPropsToValues({ 
+    username, 
+    password, 
+    vote, 
+    notes 
+  }) {
     return {
       username: username || "",
       password: password || "",
-      voting: voting || false,
+      vote: vote || false, 
       notes: ""
     };
   },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Please insert your username"),
     password: Yup.string().required("Please enter your password"),
-    voting: Yup.string().required("Please enter if you will vote or not"),
-    notes: Yup.string().required("")
+    vote: Yup.string().required("Please check if you are going to vote or not"),
+    notes: Yup.string().required("Please add a note")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
@@ -115,4 +124,3 @@ const FormikLoginForm = withFormik({
 // replaced LoginFrom with FormikLoginForm
 export default FormikLoginForm;
 
-// Email validation: pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"

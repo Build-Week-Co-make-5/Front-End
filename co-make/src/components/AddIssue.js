@@ -3,7 +3,6 @@ import { IssueContext } from '../IssueContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const AddIssue = () => {
-
   const [issue_name, setIssueName] = useState('');
   const [issue_location, setIssueLocation] = useState('');
   const [category, setCategory] = useState('');
@@ -58,6 +57,7 @@ const AddIssue = () => {
 
   return (
     <form onSubmit={addIssue}>
+      <label>Issue Title</label>
       <input
         type="text"
         issue_name="issue_name"
@@ -65,13 +65,18 @@ const AddIssue = () => {
         onChange={updateIssueName}
         placeholder="Add Title"
         key={issue_name.id}
+        required
+      />
+      <input 
+        type="submit" 
+        value="add issue" 
       />
       <input
         type="text"
         issue_location="issue_location"
         value={issue_location}
         onChange={updateIssueLocation}
-        placeholder="Add Title"
+        placeholder="Add Location"
         key={issue_location.id}
       />
       <input

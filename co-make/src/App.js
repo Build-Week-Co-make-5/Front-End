@@ -10,6 +10,7 @@ import IssueList from './components/IssueList';
 import AddIssue from "./components/AddIssue";
 import About from "./components/About";
 import Issue from "./components/Issue";
+import EditIssues from "./components/EditIssues";
 // import { IssueProvider } from './IssueContext';
 
 import "./App.css";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/about" component={About} />
             <Route exact path="/issue-list" component={IssueList} />
             <Route exact path="/issue" component={Issue} />
+            <Route exact path="/EditIssues" component={EditIssues} />
             <Route exact path="/addIssue" component={AddIssue} />
           </Switch>
         </div>
