@@ -8,7 +8,7 @@ const Issue = ({ issue_name, issue_location, category, priority, imgURL, issue_d
       <p>{issue_location}</p>
       <p>{category}</p>
       <p>{priority}</p>
-      <img src={imgURL} alt="issue-img" />
+      <p>{imgURL}</p> {/* changed imgURL back to p element from img element */}
       <p>{issue_details}</p>
     </div>
   );
