@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react';
 
 export const IssueContext = createContext();
 
-export const IssueProvider = props => {
+export const IssueProvider = (props) => {
   const [issues, setIssues] = useState([
     {
       issue_name: "Pothole",
@@ -56,7 +56,8 @@ export const IssueProvider = props => {
       issue_details: "Needs cleaned up",
     },
   ]);
-
+  
+  // Will render all of the child components
   return(
     <IssueContext.Provider value={[issues, setIssues]}>
       {props.children}

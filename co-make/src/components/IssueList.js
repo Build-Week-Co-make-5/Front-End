@@ -1,3 +1,4 @@
+// Good place to add state
 import React, { useState, useContext, useEffect } from "react";
 import Issue from "./Issue";
 import { IssueContext } from "../IssueContext";
@@ -31,12 +32,12 @@ const IssueList = () => {
         <AddIssue />
         <SearchForm issues={issues} />
         {/* moved issues.map to SearchForm for search functionality */}
-        {/* {issues.map(issue => (
-          <Issue title={issue.title} priority={issue.priority} key={issue.id} />
-        ))} */}
+          {issues.map(issue => (
+          <Issue title={issues.title} priority={issues.priority} key={issues.id} />
+        ))}
       </div>
-    )
-  );
+    ));
 };
 
 export default IssueList;
+
