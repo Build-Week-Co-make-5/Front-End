@@ -35,7 +35,6 @@ const SearchForm = ({ issues }) => {
         </form>
       </section>
       <div className="issue-list">
-        {/*  */}
         {searchResults.map(issue => {
           return (
             <Issue

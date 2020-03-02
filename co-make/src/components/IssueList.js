@@ -31,12 +31,9 @@ const IssueList = () => {
       <div>
         <AddIssue />
         <SearchForm issues={issues} />
-        {/* moved issues.map to SearchForm for search functionality */}
-          {issues.map(issue => (
-          <Issue title={issues.title} priority={issues.priority} key={issues.id} />
-        ))}
       </div>
-    ));
+    )
+  );
 };
 
 export default IssueList;
