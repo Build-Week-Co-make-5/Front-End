@@ -70,7 +70,7 @@ const AddIssue = () => {
         issue_location="issue_location"
         value={issue_location}
         onChange={updateIssueLocation}
-        placeholder="Add Title"
+        placeholder="Add Location"
         key={issue_location.id}
       />
       <input
