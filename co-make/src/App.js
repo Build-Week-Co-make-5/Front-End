@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import About from "./components/About";
 import IssueList from "./components/IssueList";
 import AddIssue from "./components/AddIssue";
-import Issue from "./components/Issue";
+// import Issue from "./components/Issue";
 import AccountInfo from "./components/CreateProfileForm";
 
 import "./App.css";
@@ -34,7 +34,7 @@ function App() {
             <Route exact path="/login" component={LoginForm} />
             <Route path="/about" component={About} />
             <Route exact path="/issue-list" component={IssueList} />
-            <Route exact path="/issue" component={Issue} />
+            {/* <Route exact path="/issue" component={Issue} /> */}
             <Route exact path="/addIssue" component={AddIssue} />
             <Route exact path="/accountInfo" component={AccountInfo} />
           </Switch>
