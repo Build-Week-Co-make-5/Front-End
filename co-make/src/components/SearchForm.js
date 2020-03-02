@@ -20,38 +20,35 @@ const SearchForm = ({ issues }) => {
   return (
     // console.log("searchResults", searchResults),
     // console.log("searchTerm", searchTerm),
-    (
-      <div>
-        <section className="search-form">
-          <form>
-            <input
-              id="title"
-              type="text"
-              name="textfield"
-              placeholder="Search"
-              onChange={handleChange}
-              value={searchTerm}
+    <div>
+      <section className="search-form">
+        <form>
+          <input
+            id="title"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            onChange={handleChange}
+            value={searchTerm}
+          />
+        </form>
+      </section>
+      <div className="issue-list">
+        {searchResults.map(issue => {
+          return (
+            <Issue
+              issue_name={issue.issue_name}
+              issue_location={issue.issue_location}
+              category={issue.category}
+              priority={issue.priority}
+              imgURL={issue.imgURL}
+              issue_details={issue.issue_details}
+              key={issue.id}
             />
-          </form>
-        </section>
-        <div className="issue-list">
-          {/*  */}
-          {searchResults.map(issue => {
-            return (
-              <Issue
-                issue_name={issue.issue_name}
-                issue_location={issue.issue_location}
-                category={issue.category}
-                priority={issue.priority}
-                imgURL={issue.imgURL}
-                issue_details={issue.issue_details}
-                key={issue.id}
-              />
-            );
-          })}
-        </div>
+          );
+        })}
       </div>
-    )
+    </div>
   );
 };
 

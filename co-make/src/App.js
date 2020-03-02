@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { IssueProvider } from "./IssueContext";
-// import { LandingPage } from './components/LandingPage';
+import { LandingPage } from './components/LandingPage';
 
 import RegistrationForm from "./components/RegistrationFrom";
 import LoginForm from "./components/LoginForm";
@@ -21,8 +21,8 @@ function App() {
         <div className="App">
           <Navbar />
           <Switch>
-            {/* <h1>Protected React Router</h1>
-            <Route exact path="/" component={LandingPage} /> */}
+            {/* <h1>Protected React Router</h1> */}
+            <Route exact path="/" component={LandingPage} />
             <Route
               path="/register"
               render={() => {
