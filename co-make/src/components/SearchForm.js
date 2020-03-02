@@ -3,7 +3,7 @@ import Issue from "./Issue";
 
 const SearchForm = ({ issues }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState({ issues });
+  const [searchResults, setSearchResults] = useState(issues);
 
   const handleChange = e => {
     setSearchTerm(e.target.value);
@@ -18,8 +18,8 @@ const SearchForm = ({ issues }) => {
   }, [searchTerm, issues]);
 
   return (
-    console.log("searchResults", searchResults),
-    console.log("searchTerm", searchTerm),
+    // console.log("searchResults", searchResults),
+    // console.log("searchTerm", searchTerm),
     (
       <div>
         <section className="search-form">
@@ -35,7 +35,8 @@ const SearchForm = ({ issues }) => {
           </form>
         </section>
         <div className="issue-list">
-          {/* {searchResults.map(issue => {
+          {/*  */}
+          {searchResults.map(issue => {
             return (
               <Issue
                 issue_name={issue.issue_name}
@@ -47,8 +48,7 @@ const SearchForm = ({ issues }) => {
                 key={issue.id}
               />
             );
-          })} */}
-          
+          })}
         </div>
       </div>
     )
