@@ -32,6 +32,7 @@ const SearchForm = ({ issues }) => {
             onChange={handleChange}
             value={searchTerm}
           />
+          <button>Submit</button>
         </form>
       </section>
       <div className="issue-list">

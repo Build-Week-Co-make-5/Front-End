@@ -6,15 +6,16 @@ import { LandingPage } from './components/LandingPage';
 import RegistrationForm from "./components/RegistrationFrom";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
-import IssueList from './components/IssueList';
-import AddIssue from "./components/AddIssue";
 import About from "./components/About";
-import Issue from "./components/Issue";
-// import { IssueProvider } from './IssueContext';
+import IssueList from "./components/IssueList";
+import AddIssue from "./components/AddIssue";
+// import Issue from "./components/Issue";
+import AccountInfo from "./components/CreateProfileForm";
 
 import "./App.css";
 
 function App() {
+
   return (
     <Router>
       <IssueProvider>
@@ -32,8 +33,9 @@ function App() {
             <Route exact path="/login" component={LoginForm} />
             <Route path="/about" component={About} />
             <Route exact path="/issue-list" component={IssueList} />
-            <Route exact path="/issue" component={Issue} />
+            {/* <Route exact path="/issue" component={Issue} /> */}
             <Route exact path="/addIssue" component={AddIssue} />
+            <Route exact path="/accountInfo" component={AccountInfo} />
           </Switch>
         </div>
       </IssueProvider>

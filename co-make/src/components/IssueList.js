@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from "react";
+// Good place to add state
+import React, { useState, useContext, useEffect } from "react";
+import Issue from "./Issue";
+import { IssueContext } from "../IssueContext";
+import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 import "../App.css";
@@ -37,3 +41,4 @@ const IssueList = () => {
 };
 
 export default IssueList;
+
