@@ -12,23 +12,30 @@ const Issue = ({
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <div>
+    <div className="issue-card">
       <h3>{issue_name}</h3>
-      <p>{issue_location}</p>
-      <p>{category}</p>
-      <p>{priority}</p>
-      <p>{imgURL}</p> {/* changed imgURL back to p element from img element */}
-      <p>{issue_details}</p>
-      <p>{upvotes} upvotes</p>
-      <button
-        onClick={() => {
-          setUpvotes(upvotes + 1);
-          setDisabled(true);
-        }}
-        disabled={disabled}
-      >
-        Upvote
-      </button>
+      <div className="issue-desc">
+        <p className="issue-img">{imgURL}</p>
+        {/* changed imgURL back to p element from img element */}
+        <div className="info">
+          <p>Location: {issue_location}</p>
+          <p>Category: {category}</p>
+          <p>Priority: {priority}</p>
+          <p>Description: {issue_details}</p>
+        </div>
+      </div> {/* issue-desc */}
+      <section className="upvotes">
+        <p>{upvotes} upvotes</p>
+        <button
+          onClick={() => {
+            setUpvotes(upvotes + 1);
+            setDisabled(true);
+          }}
+          disabled={disabled}
+        >
+          Upvote
+        </button>
+      </section>
     </div>
   );
 };

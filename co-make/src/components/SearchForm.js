@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
+import { Link } from "react-router-dom"; // moved from IssueList
 
 const SearchForm = ({ issues }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,9 +21,14 @@ const SearchForm = ({ issues }) => {
   return (
     // console.log("searchResults", searchResults),
     // console.log("searchTerm", searchTerm),
-    <div>
-      <section className="search-form">
-        <form>
+    <div className="search-form">
+      <section className="header">
+        <button>
+          <Link className="search-link" to="/addIssue">
+            Add Issue
+          </Link>
+        </button>
+        <form className="search-bar">
           <input
             id="title"
             type="text"
@@ -31,7 +37,7 @@ const SearchForm = ({ issues }) => {
             onChange={handleChange}
             value={searchTerm}
           />
-          <button>Submit</button>
+          {/* <button>Submit</button> */}
         </form>
       </section>
       <div className="issue-list">

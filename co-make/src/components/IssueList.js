@@ -6,7 +6,7 @@ import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 import "../App.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom"; moved to SearchForm
 
 const IssueList = () => {
   const [issues, setIssues] = useState([]);
@@ -29,7 +29,6 @@ const IssueList = () => {
     console.log("issues", issues),
     (
       <div>
-        <Link to="/addIssue">Add Issue</Link>
         <SearchForm issues={issues} />
       </div>
     )
