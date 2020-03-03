@@ -38,14 +38,14 @@ const LoginForm = ({ values, errors, touched, status }) => {
         <Button type="submit">Login</Button>
       </Form>
 
-      {loginInfo.map(user => {
+      {/* {loginInfo.map(user => {
         return (
           <ul key={user.id}>
             <li>Email: {user.email}</li>
             <li>Password: {user.password}</li>
           </ul>
         );
-      })}
+      })} */}
     </div>
   );
 };

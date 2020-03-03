@@ -35,15 +35,6 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           <p className="errors">{errors.username}</p>
         )}
         <Field
-          type="password"
-          name="password"
-          placeholder="password"
-          className="input"
-        />
-        {touched.password && errors.password && (
-          <p className="errors">{errors.password}</p>
-        )}
-        <Field
           type="email"
           name="email"
           placeholder="email"
@@ -51,6 +42,15 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
         />
         {touched.email && errors.email && (
           <p className="errors">{errors.email}</p>
+        )}
+        <Field
+          type="password"
+          name="password"
+          placeholder="password"
+          className="input"
+        />
+        {touched.password && errors.password && (
+          <p className="errors">{errors.password}</p>
         )}
         <Field type="text" name="city" placeholder="city" className="input" />
         {touched.city && errors.city && <p className="errors">{errors.city}</p>}
@@ -80,7 +80,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
         <Button type="submit">Register</Button>
       </Form>
 
-      {userData.map(user => {
+      {/* {userData.map(user => {
         return (
           <ul key={user.id}>
             <li>Fullname: {user.fullname}</li>
@@ -92,18 +92,18 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
             <li>Voting: {user.voting}</li>
           </ul>
         );
-      })}
+      })} */}
     </div>
   );
 };
 
 const FormikRegistrationForm = withFormik({
-  mapPropsToValues({ fullname, username, password, email, city, voting }) {
+  mapPropsToValues({ fullname, username, email, password, city, voting }) {
     return {
       fullname: fullname || "",
       username: username || "",
-      password: password || "",
       email: email || "",
+      password: password || "",
       city: city || "",
       voting: voting || false
     };
