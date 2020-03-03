@@ -5,21 +5,21 @@ import { IssueContext } from "../IssueContext";
 import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
-import '../App.css';
+import "../App.css";
+// import { Link } from "react-router-dom"; moved to SearchForm
 
 const IssueList = () => {
-  // const [issues, setIssues] = useContext(IssueContext);
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
     const getIssues = () => {
       axios
-      .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
-      .then(res => {
-        console.log("res", res);
-        setIssues(res.data.issue);
-      })
-      .catch(error => console.log(error));
+        .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
+        .then(res => {
+          console.log("res", res);
+          setIssues(res.data.issue);
+        })
+        .catch(error => console.log(error));
     };
 
     getIssues();
@@ -29,7 +29,6 @@ const IssueList = () => {
     console.log("issues", issues),
     (
       <div>
-        <AddIssue />
         <SearchForm issues={issues} />
       </div>
     )

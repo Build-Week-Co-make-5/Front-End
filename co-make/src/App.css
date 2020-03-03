@@ -1,17 +1,13 @@
 .App {
   text-align: center;
+  background: #57a6a9;
+  padding-bottom: 40vh; /* temporary way of getting rid of white space */
 }
 
 /* Navbar styling */
 .navigation {
-  /* display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 10vh;
-  background: blue;
-  color: white; */
-  height: 4rem;
-  background: lightgrey;
+  height: 15vh;
+  background: #3EBDC2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,9 +16,22 @@
   margin-bottom: 2rem;
 }
 
+.navigation .nav-links {
+  text-decoration: none;
+  color: #403ec2;
+}
+
+.navigation:hover .nav-links {
+  opacity: 0.5;
+}
+
+.navigation:hover .nav-links:hover {
+  opacity: 1;
+}
+
 /* LoginForm and RegistrationForm styling */
 .login-form, .register-form {
-  background-color: lightgrey;
+  background-color: #3EBDC2;
   width: 40vw;
   margin: 5rem auto 0;
   padding: 1rem 0;
@@ -33,14 +42,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 50vh;
+  /* height: 50vh; */
 }
 
 .login-format .input, .register-format .input {
   width: 50%;
   text-align: center;
-  margin: 0 auto;
+  margin: 1rem auto;
   border-radius: 10px;
+}
+
+.login-format button, .register-format button {
+  width: 7rem;
+  height: 2em;
+  background: #5857a9;
+  color: white;
+  border: 0;
 }
 
 img {
@@ -58,4 +75,91 @@ img {
   color: red;
   font-style: bold;
   font-size: 1.2rem;
+}
+
+/* SearchForm.js */
+.search-form .header {
+  /* background: lightgrey; */
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.search-form .header button {
+  width: 20%;
+  margin-right: 5%;
+  background: #5857a9;
+  border: 0;
+  border-radius: 3px;
+}
+
+.search-form .header button .search-link {
+  text-decoration: none;
+  color: white;
+}
+
+.search-form .header .search-bar {
+  width: 75%;
+  /* background: grey; */
+}
+
+.search-form .header .search-bar input {
+  width: 66%;
+  height: 2rem;
+  background: lightgrey;
+  border: 0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: flex-start;
+  text-indent: 1rem;
+}
+
+/* Issue.js */
+.issue-card {
+  width: 90%;
+  margin: 1rem auto;
+  border: 2px solid #5857a9;
+  /* background: cornsilk; */
+  color: white;
+}
+
+.issue-card .issue-desc {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.issue-card .issue-desc .issue-img {
+  width: 40%;
+  background: #5857a9;
+  height: 12rem;
+}
+
+.issue-card .issue-desc .info {
+  width: 40%;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.issue-card .upvotes {
+  width: 20%;
+  margin: 0 auto;
+  /* border: 2px solid black; */
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.issue-card .upvotes button {
+  height: 2rem;
+  width: 5rem;
+  background: #57a95a;
+  /* color: white; */
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.issue-card .upvotes button:focus {
+  color: grey;
 }
