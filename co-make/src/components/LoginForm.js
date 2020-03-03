@@ -17,14 +17,13 @@ const LoginForm = ({ values, errors, touched, status }) => {
     <div className="login-form">
       <Form className="login-format">
         <Field
-          id="username"
-          type="text"
-          name="username"
-          placeholder="username"
+          type="email"
+          name="email"
+          placeholder="email"
           className="input"
         />
-        {touched.username && errors.username && (
-          <p className="errors">{errors.username}</p>
+        {touched.email && errors.email && (
+          <p className="errors">{errors.email}</p>
         )}
         <Field
           id="password"
@@ -36,47 +35,14 @@ const LoginForm = ({ values, errors, touched, status }) => {
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <label htmlFor="category">
-          Category:
-          <Field className="issue-select" as="select" name="category">
-            <option disabled>Choose an option</option>
-            <option value="neighbor">Neighbor</option>
-            <option value="board-member">Board Member</option>
-            <option value="parent">Parent</option>
-            <option value="police">Police</option>
-            <option value="witness">Witness</option>
-            <option value="mayor">Mayor</option>
-            <option value="social-worker">Social Worker</option>
-          </Field>
-        </label>
-        <label htmlFor="voting" className="checkbox-container">
-          Voting
-          <Field
-            id="voting"
-            type="checkbox"
-            name="voting"
-            checked={values.voting}
-          />
-          <span className="checkmark" />
-        </label>
-        <Field
-          as="textarea"
-          type="text"
-          name="notes"
-          placeholder="Notes"
-          className="input"
-        />
         <Button type="submit">Login</Button>
       </Form>
 
       {loginInfo.map(user => {
         return (
           <ul key={user.id}>
-            <li>Username: {user.username}</li>
+            <li>Email: {user.email}</li>
             <li>Password: {user.password}</li>
-            <li>Category: {user.category}</li>
-            <li>Voting: {user.voting}</li>
-            <li>Notes: {user.notes}</li>
           </ul>
         );
       })}
@@ -85,19 +51,15 @@ const LoginForm = ({ values, errors, touched, status }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ username, password, voting }) {
+  mapPropsToValues({ email, password }) {
     return {
-      username: username || "",
-      password: password || "",
-      voting: voting || false,
-      notes: ""
+      email: email || "",
+      password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("Please insert your username"),
-    password: Yup.string().required("Please enter your password"),
-    voting: Yup.string().required("Please enter if you will vote or not"),
-    notes: Yup.string().required("")
+    email: Yup.string().required("Please enter your email address"),
+    password: Yup.string().required("Please enter your password")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
@@ -114,4 +76,3 @@ const FormikLoginForm = withFormik({
 
 // replaced LoginFrom with FormikLoginForm
 export default FormikLoginForm;
-
