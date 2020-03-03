@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
+import { Link } from "react-router-dom";
 
 const SearchForm = ({ issues }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,15 +37,18 @@ const SearchForm = ({ issues }) => {
       <div className="issue-list">
         {searchResults.map(issue => {
           return (
-            <Issue
-              issue_name={issue.issue_name}
-              issue_location={issue.issue_location}
-              category={issue.category}
-              priority={issue.priority}
-              imgURL={issue.imgURL}
-              issue_details={issue.issue_details}
-              key={issue.id}
-            />
+            <div>
+              <Issue
+                issue_name={issue.issue_name}
+                issue_location={issue.issue_location}
+                category={issue.category}
+                priority={issue.priority}
+                imgURL={issue.imgURL}
+                issue_details={issue.issue_details}
+                key={issue.id}
+              />
+              <Link to={`/issue-list/${issue.id}`}>Learn More</Link>
+            </div>
           );
         })}
       </div>

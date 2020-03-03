@@ -24,6 +24,6 @@ export const Division = styled.div`
 export const Button = styled.button`
   width: 35%;
   margin: 0 auto;
-  border-radius: 20px;
+  border-radius: 3px;
 `;
 

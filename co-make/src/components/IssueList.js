@@ -1,14 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
-import Issue from "./Issue";
-import { IssueContext } from "../IssueContext";
-import AddIssue from "./AddIssue";
+import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import IssueDetail from "./IssueDetail";
 
 const IssueList = () => {
-  // const [issues, setIssues] = useContext(IssueContext);
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
@@ -29,13 +26,11 @@ const IssueList = () => {
     console.log("issues", issues),
     (
       <div>
-        {/* <AddIssue /> */}
         <Link to="/addIssue">Add Issue</Link>
         <SearchForm issues={issues} />
-        {/* moved issues.map to SearchForm for search functionality */}
-        {/* {issues.map(issue => (
-          <Issue title={issue.title} priority={issue.priority} key={issue.id} />
-        ))} */}
+        <Route path="/issue-list/:id" render={(renderProps) => {
+          return <IssueDetail {...renderProps} data={issues} />
+        }} />
       </div>
     )
   );
