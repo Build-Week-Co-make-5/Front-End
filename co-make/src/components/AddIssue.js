@@ -8,9 +8,8 @@ const AddIssue = () => {
   const [issue_location, setIssueLocation] = useState('');
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
-  const [imgURL, setImgURL] = useState('');
-  const [issue_details, setIssueDetails] = useState('');
-
+  // const [imgURL, setImgURL] = useState('');
+  // const [issue_details, setIssueDetails] = useState('');
 
   const [issues, setIssues] = useContext(IssueContext);
 
@@ -30,17 +29,17 @@ const AddIssue = () => {
     setPriority(e.target.value);
   };
 
-  const updateImgURL = e => {
-    setImgURL(e.target.value);
-  };
+  // const updateImgURL = e => {
+  //   setImgURL(e.target.value);
+  // };
 
-  const updateIssueDetails = e => {
-    setIssueDetails(e.target.value);
-  };
+  // const updateIssueDetails = e => {
+  //   setIssueDetails(e.target.value);
+  // };
 
   const addIssue = e => {
     e.preventDefault();
-    setIssues(prevIssues => [...prevIssues, { issue_name: issue_name, issue_location: issue_location, category: category, priority: priority, imgURL: imgURL, issue_details: issue_details }]);
+    setIssues(prevIssues => [...prevIssues, { issue_name: issue_name, issue_location: issue_location, category: category, priority: priority }]);
   };
 
   useEffect(() => {
@@ -71,12 +70,12 @@ const AddIssue = () => {
         issue_location="issue_location"
         value={issue_location}
         onChange={updateIssueLocation}
-        placeholder="Add Title"
+        placeholder="Add Location"
         key={issue_location.id}
       />
       <input
         type="text"
-        title="category"
+        category="category"
         value={category}
         onChange={updateCategory}
         placeholder="Add Category"
@@ -84,15 +83,15 @@ const AddIssue = () => {
       />
       <input
         type="text"
-        title="priority"
+        priority="priority"
         value={priority}
         onChange={updatePriority}
         placeholder="Add Priority"
         key={priority.id}
       />
-      <input
+      {/* <input
         type="url"
-        title="imgURL"
+        imgURL="imgURL"
         value={imgURL}
         onChange={updateImgURL}
         placeholder="Add Image URL"
@@ -100,12 +99,12 @@ const AddIssue = () => {
       />
       <input
         type="text"
-        title="issue_details"
+        issue_details="issue_details"
         value={issue_details}
         onChange={updateIssueDetails}
         placeholder="Add Issue Details"
         key={issue_details.id}
-      />
+      /> */}
       <button>Submit</button>
     </form>
   );
