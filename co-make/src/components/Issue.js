@@ -9,6 +9,7 @@ const Issue = ({
   issue_details
 }) => {
   const [upvotes, setUpvotes] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div>
@@ -19,7 +20,15 @@ const Issue = ({
       <p>{imgURL}</p> {/* changed imgURL back to p element from img element */}
       <p>{issue_details}</p>
       <p>{upvotes} upvotes</p>
-      <button onClick={() => setUpvotes(upvotes + 1)}>Upvote</button>
+      <button
+        onClick={() => {
+          setUpvotes(upvotes + 1);
+          setDisabled(true);
+        }}
+        disabled={disabled}
+      >
+        Upvote
+      </button>
     </div>
   );
 };

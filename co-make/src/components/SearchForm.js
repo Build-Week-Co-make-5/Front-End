@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Issue from "./Issue";
-import { Link } from "react-router-dom";
 
 const SearchForm = ({ issues }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -48,7 +47,6 @@ const SearchForm = ({ issues }) => {
                 issue_details={issue.issue_details}
                 key={issue.id}
               />
-              <Link to={`/issue-list/${issue.id}`}>Learn More</Link>
             </div>
           );
         })}

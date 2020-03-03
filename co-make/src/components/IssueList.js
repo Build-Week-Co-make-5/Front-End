@@ -6,8 +6,7 @@ import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 import "../App.css";
-import { Link, Route } from "react-router-dom";
-import IssueDetail from "./IssueDetail";
+import { Link } from "react-router-dom";
 
 const IssueList = () => {
   const [issues, setIssues] = useState([]);
@@ -32,9 +31,6 @@ const IssueList = () => {
       <div>
         <Link to="/addIssue">Add Issue</Link>
         <SearchForm issues={issues} />
-        <Route path="/issue-list/:id" render={(renderProps) => {
-          return <IssueDetail {...renderProps} data={issues} />
-        }} />
       </div>
     )
   );
