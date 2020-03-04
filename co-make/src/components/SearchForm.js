@@ -18,6 +18,9 @@ const SearchForm = ({ issues }) => {
     setSearchResults(results);
   }, [searchTerm, issues]);
 
+  // useEffect(() => {console.log(issues);setSearchResults(issues)},[issues])
+  // componentDidUpdate re-render the element
+
   return (
     // console.log("searchResults", searchResults),
     // console.log("searchTerm", searchTerm),
