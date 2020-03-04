@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Button } from "./Style";
+import {Button} from "../Style";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState([]);
@@ -16,71 +16,28 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
   return (
     <div className="register-form">
       <Form className="register-format">
-        <Field
-          type="text"
-          name="fullname"
-          placeholder="fullname"
-          className="input"
-        />
+        <Field type="text" name="fullname" placeholder="fullname" className="input" />
         {touched.fullname && errors.fullname && (
           <p className="errors">{errors.fullname}</p>
         )}
-        <Field
-          type="text"
-          name="username"
-          placeholder="username"
-          className="input"
-        />
+        <Field type="text" name="username" placeholder="username" className="input" />
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
         )}
-        <Field
-          type="email"
-          name="email"
-          placeholder="email"
-          className="input"
-        />
-        {touched.email && errors.email && (
-          <p className="errors">{errors.email}</p>
-        )}
-        <Field
-          type="password"
-          name="password"
-          placeholder="password"
-          className="input"
-        />
+        <Field type="password" name="password" placeholder="password" className="input" />
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
+        <Field type="email" name="email" placeholder="email" className="input" />
+        {touched.email && errors.email && (
+          <p className="errors">{errors.email}</p>
+        )}
         <Field type="text" name="city" placeholder="city" className="input" />
         {touched.city && errors.city && <p className="errors">{errors.city}</p>}
-        <label htmlFor="category">
-          Category:
-          <Field className="issue-select" as="select" name="category">
-            <option disabled>Choose an option</option>
-            <option value="neighbor">Neighbor</option>
-            <option value="board-member">Board Member</option>
-            <option value="parent">Parent</option>
-            <option value="police">Police</option>
-            <option value="witness">Witness</option>
-            <option value="mayor">Mayor</option>
-            <option value="social-worker">Social Worker</option>
-          </Field>
-        </label>
-        <label htmlFor="voting" className="checkbox-container">
-          Voting
-          <Field
-            id="voting"
-            type="checkbox"
-            name="voting"
-            checked={values.voting}
-          />
-          <span className="checkmark" />
-        </label>
         <Button type="submit">Register</Button>
       </Form>
 
-      {/* {userData.map(user => {
+      {userData.map(user => {
         return (
           <ul key={user.id}>
             <li>Fullname: {user.fullname}</li>
@@ -88,24 +45,21 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
             <li>Password: {user.password}</li>
             <li>Email: {user.email}</li>
             <li>City: {user.city}</li>
-            <li>Category: {user.category}</li>
-            <li>Voting: {user.voting}</li>
           </ul>
         );
-      })} */}
+      })}
     </div>
   );
 };
 
 const FormikRegistrationForm = withFormik({
-  mapPropsToValues({ fullname, username, email, password, city, voting }) {
+  mapPropsToValues({ fullname, username, password, email, city }) {
     return {
       fullname: fullname || "",
       username: username || "",
-      email: email || "",
       password: password || "",
-      city: city || "",
-      voting: voting || false
+      email: email || "",
+      city: city || ""
     };
   },
   validationSchema: Yup.object().shape({

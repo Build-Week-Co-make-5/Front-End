@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { IssueContext } from '../IssueContext';
+import { IssueContext } from '../contexts/IssueContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const AddIssue = () => {
+const AddIssue = issue => {
 
   const [issue_name, setIssueName] = useState('');
   const [issue_location, setIssueLocation] = useState('');
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
-  // const [imgURL, setImgURL] = useState('');
-  // const [issue_details, setIssueDetails] = useState('');
+  const [imgURL, setImgURL] = useState('');
+  const [issue_details, setIssueDetails] = useState('');
 
   const [issues, setIssues] = useContext(IssueContext);
 
@@ -29,17 +29,19 @@ const AddIssue = () => {
     setPriority(e.target.value);
   };
 
-  // const updateImgURL = e => {
-  //   setImgURL(e.target.value);
-  // };
+  const updateImgURL = e => {
+    setImgURL(e.target.value);
+  };
 
-  // const updateIssueDetails = e => {
-  //   setIssueDetails(e.target.value);
-  // };
+  const updateIssueDetails = e => {
+    setIssueDetails(e.target.value);
+  };
 
   const addIssue = e => {
     e.preventDefault();
     setIssues(prevIssues => [...prevIssues, { issue_name: issue_name, issue_location: issue_location, category: category, priority: priority }]);
+    
+
   };
 
   useEffect(() => {
@@ -57,6 +59,7 @@ const AddIssue = () => {
 
   return (
     <form onSubmit={addIssue}>
+    {console.log("issuessssss",issues)}
       <input
         type="text"
         issue_name="issue_name"
@@ -89,7 +92,7 @@ const AddIssue = () => {
         placeholder="Add Priority"
         key={priority.id}
       />
-      {/* <input
+      <input
         type="url"
         imgURL="imgURL"
         value={imgURL}
@@ -104,7 +107,7 @@ const AddIssue = () => {
         onChange={updateIssueDetails}
         placeholder="Add Issue Details"
         key={issue_details.id}
-      /> */}
+      />
       <button>Submit</button>
     </form>
   );

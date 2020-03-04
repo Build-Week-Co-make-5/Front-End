@@ -1,7 +1,7 @@
 // Good place to add state
 import React, { useState, useContext, useEffect } from "react";
 import Issue from "./Issue";
-import { IssueContext } from "../IssueContext";
+import { IssueContext } from "../contexts/IssueContext";
 import AddIssue from "./AddIssue";
 import SearchForm from "./SearchForm";
 import axios from "axios";
@@ -10,6 +10,15 @@ import "../App.css";
 
 const IssueList = () => {
   const [issues, setIssues] = useState([]);
+
+  const [newIssue, setNewIssue] = useState({
+    issue_name: "",
+    issue_location: "",
+    category: "",
+    priority: "",
+    imgURL: "",
+    issue_details: "",
+  });
 
   useEffect(() => {
     const getIssues = () => {

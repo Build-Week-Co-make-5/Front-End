@@ -1,7 +1,7 @@
 // Yen
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { IssueContext } from "../IssueContext";
+import { IssueContext } from "../contexts/IssueContext";
 import { Division } from "./Style";
 import Logo from "./Logo/logo.png";
 import "../App.css";

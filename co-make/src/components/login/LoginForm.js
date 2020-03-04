@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Button } from "./Style";
+import { Button } from "../Style";
 
 const LoginForm = ({ values, errors, touched, status }) => {
   const [loginInfo, setLoginInfo] = useState([]);
@@ -54,12 +54,12 @@ const FormikLoginForm = withFormik({
   mapPropsToValues({ email, password }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
     };
   },
   validationSchema: Yup.object().shape({
     email: Yup.string().required("Please enter your email address"),
-    password: Yup.string().required("Please enter your password")
+    password: Yup.string().required("Please enter your password"),
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
@@ -71,7 +71,7 @@ const FormikLoginForm = withFormik({
         resetForm();
       })
       .catch(err => console.log(err.reponse));
-  }
+  },
 })(LoginForm);
 
 // replaced LoginFrom with FormikLoginForm
