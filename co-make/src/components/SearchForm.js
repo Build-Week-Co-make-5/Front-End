@@ -23,11 +23,10 @@ const SearchForm = ({ issues }) => {
     // console.log("searchTerm", searchTerm),
     <div className="search-form">
       <section className="header">
-        <button>
-          <Link className="search-link" to="/addIssue">
-            Add Issue
-          </Link>
-        </button>
+        <Link className="search-link" to="/addIssue">
+          <button>Add Issue</button>
+        </Link>
+        {/* inverted button & link order for better functionality */}
         <form className="search-bar">
           <input
             id="title"
@@ -42,6 +41,7 @@ const SearchForm = ({ issues }) => {
       </section>
       <div className="issue-list">
         {searchResults.map(issue => {
+          console.log("issue-id", issue.id);
           return (
             <div>
               <Issue
@@ -56,6 +56,13 @@ const SearchForm = ({ issues }) => {
             </div>
           );
         })}
+        {/* new Search (
+          Array
+            .from(searchResults)
+            .sort((a,b) => {
+              return a.id - b.id;
+            })
+        ) */}
       </div>
     </div>
   );

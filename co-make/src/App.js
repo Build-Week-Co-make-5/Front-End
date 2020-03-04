@@ -23,9 +23,17 @@ function App() {
           <Switch>
             {/* <h1>Protected React Router</h1> */}
             <Route exact path="/" component={LandingPage} />
+            {/* <Route exact path="/" component={() => {
+              window.location.href="URL to landing page";
+              return null;
+            }} /> */}
             <Route path="/register" component={RegistrationForm} />
             <Route exact path="/login" component={LoginForm} />
             <Route path="/about" component={About} />
+            {/* <Route path="/about" component={() => {
+              window.location.href="URL to about page";
+              return null;
+            }} /> */}
             <Route exact path="/issue-list" component={IssueList} />
             {/* <Route exact path="/issue" component={Issue} /> */}
             <Route exact path="/addIssue" component={AddIssue} />
