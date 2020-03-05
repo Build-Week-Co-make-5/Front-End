@@ -23,13 +23,12 @@ const LoginForm = ({ values, errors, touched, status }) => {
 
   const handleSubmit = (values) => {
     axiosWithAuth()
-      .post("/login", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values)
       .then(res => {
-        console.log("success", res)
-        localStorage.setItem("token", res.data.token)
-        history.push("/issue-list")
-        // resetForm()
-    })
+        console.log("success", res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/issue-list");
+      })
       .catch(err => console.log("Oops, there's an error", err));
   };
 

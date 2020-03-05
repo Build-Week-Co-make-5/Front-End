@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 import {Button} from "../Style";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
@@ -21,14 +22,29 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
     });
   };
 
+  let history = useHistory();
+
+  const handleSubmit = values => {
+    axiosWithAuth()
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values)
+      .then(res => {
+        console.log("success", res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/issue-list");
+      })
+      .catch(err => console.log("Oops, there's an error", err));
+  }
+
   return (
     <div className="register-form">
-      <Form className="register-format">
+      <Form className="register-format" onSubmit={handleSubmit}>
         <Field
           type="text"
           name="fullname"
           placeholder="fullname"
           className="input"
+          onChange={handleChange}
+          value={userData.fullname}
         />
         {touched.fullname && errors.fullname && (
           <p className="errors">{errors.fullname}</p>
@@ -38,6 +54,8 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="username"
           placeholder="username"
           className="input"
+          onChange={handleChange}
+          value={userData.username}
         />
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
@@ -47,6 +65,8 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="email"
           placeholder="email"
           className="input"
+          onChange={handleChange}
+          value={userData.email}
         />
         {touched.email && errors.email && (
           <p className="errors">{errors.email}</p>
@@ -56,11 +76,20 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="password"
           placeholder="password"
           className="input"
+          onChange={handleChange}
+          value={userData.password}
         />
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <Field type="text" name="city" placeholder="city" className="input" />
+        <Field
+          type="text"
+          name="city"
+          placeholder="city"
+          className="input"
+          onChange={handleChange}
+          value={userData.city}
+        />
         {touched.city && errors.city && <p className="errors">{errors.city}</p>}
         <Button type="submit">Register</Button>
       </Form>
@@ -97,17 +126,6 @@ const FormikRegistrationForm = withFormik({
     email: Yup.string().required("Kindly include your email address"),
     city: Yup.string().required("Kindly let us know which city you reside in!")
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
-    console.log("submitting!", values);
-    axios
-      .post("https://reqres.in/api/users/", values)
-      .then(res => {
-        console.log("success", res);
-        setStatus(res.data);
-        resetForm();
-      })
-      .catch(err => console.log(err.response));
-  }
 })(RegistrationForm);
 
 export default FormikRegistrationForm;

@@ -35,7 +35,7 @@ const SearchForm = ({ issues }) => {
     useEffect(() => {
       const getSearch = () => {
         axiosWithAuth()
-          .get() // Co-Make API key here
+          .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
           .then(response => {
             console.log("API IS HERE: ", response.data);
             setSearchResults(response.data);
