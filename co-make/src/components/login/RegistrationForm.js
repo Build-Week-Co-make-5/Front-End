@@ -94,7 +94,8 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
         <Button type="submit">Register</Button>
       </Form>
 
-      {/* {userData.map(user => {
+      {/*  */} {/* dummy data to show submit form was working initially no longer needed */}
+      {userData.map(user => {
         return (
           <ul key={user.id}>
             <li>Fullname: {user.fullname}</li>
@@ -104,7 +105,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
             <li>City: {user.city}</li>
           </ul>
         );
-      })} */} {/* dummy data to show submit form was working initially no longer needed */}
+      })}
     </div>
   );
 };
@@ -124,8 +125,8 @@ const FormikRegistrationForm = withFormik({
     username: Yup.string().required("Please create a valid username"),
     password: Yup.string().required("Don't forget to create your password!"),
     email: Yup.string().required("Kindly include your email address"),
-    city: Yup.string().required("Kindly let us know which city you reside in!")
-  })
+    city: Yup.string().required("Kindly let us know which city you reside in!!")
+  }),
 })(RegistrationForm);
 
 export default FormikRegistrationForm;
