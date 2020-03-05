@@ -37,7 +37,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
         <Button type="submit">Register</Button>
       </Form>
 
-      {userData.map(user => {
+      {/* {userData.map(user => {
         return (
           <ul key={user.id}>
             <li>Fullname: {user.fullname}</li>
@@ -47,7 +47,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
             <li>City: {user.city}</li>
           </ul>
         );
-      })}
+      })} */} {/* dummy data to show submit form was working initially no longer needed */}
     </div>
   );
 };
@@ -71,8 +71,9 @@ const FormikRegistrationForm = withFormik({
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting!", values);
+    // https://reqres.in/api/users/
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/register", values) /* changed post request from reqres.in to our backend link */
       .then(res => {
         console.log("success", res);
         setStatus(res.data);

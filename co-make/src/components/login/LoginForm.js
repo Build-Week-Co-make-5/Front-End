@@ -19,7 +19,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
         <Field
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="example@example.com" /* changed placeholder from email */
           className="input"
         />
         {touched.email && errors.email && (
@@ -45,7 +45,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
             <li>Password: {user.password}</li>
           </ul>
         );
-      })} */}
+      })} */} {/* dummy data to show submit form was working initially no longer needed */}
     </div>
   );
 };
@@ -64,7 +64,7 @@ const FormikLoginForm = withFormik({
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting", values);
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values) /* changed post request from reqres.in to our backend link */
       .then(res => {
         console.log("success", res);
         setStatus(res.data);
