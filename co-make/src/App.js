@@ -53,7 +53,7 @@ function App() {
               return null;
             }} /> */}
             <Route exact path="/issue-list" component={IssueList} />
-            <Route exact path="/issue" component={Issue} />
+            {/* <Route exact path="/issue/:id" component={Issue} /> */} {/* moved Route to IssueList */}
             <Route exact path="/addIssue" component={AddIssue} />
             <Route exact path="/editIssues" component={EditIssues} />
           </Switch>

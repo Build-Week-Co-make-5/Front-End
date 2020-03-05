@@ -27,37 +27,39 @@ const SearchForm = ({ issues }) => {
     setSearchResults(results);
   }, [searchTerm, issues]);
 
-
   //  useEffect(() => {
   //     console.log(issues);
   //     setSearchResults(issues)},[issues])
   // componentDidUpdate re-render the element
-    useEffect(() => {
-      const getSearch = () => {
-        axiosWithAuth()
-          .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
-          .then(response => {
-            console.log("API IS HERE: ", response.data);
-            setSearchResults(response.data);
-          })
-          .catch(error => {
-            console.log("Whoops go back, that's an error!", error);
-          });
-      };
-
-      const results = issues.filter(stat => {
-        return (
-          stat.register.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          stat.login.toLowerCase().includes(searchTerm.toLowerCase)) ||
-          stat.users.toLowerCase().includes(searchTerm.toLowerCase) ||
-          {/* Add all of the keys here */}
+  useEffect(() => {
+    const getSearch = () => {
+      axiosWithAuth()
+        .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
+        .then(response => {
+          console.log("API IS HERE: ", response.data);
+          setSearchResults(response.data);
+        })
+        .catch(error => {
+          console.log("Whoops go back, that's an error!", error);
         });
+    };
 
-        getSearch();
-        setSearchResults(results);
-        //eslint-disable-next-line
-    }, [searchTerm]);
-    console.log(issues);
+    const results = issues.filter(stat => {
+      return (
+        stat.register.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        stat.login.toLowerCase().includes(searchTerm.toLowerCase) ||
+        stat.users.toLowerCase().includes(searchTerm.toLowerCase) ||
+        {
+          /* Add all of the keys here */
+        }
+      );
+    });
+
+    getSearch();
+    setSearchResults(results);
+    //eslint-disable-next-line
+  }, [searchTerm]);
+  console.log(issues);
 
   return (
     // console.log("searchResults", searchResults),
@@ -94,6 +96,8 @@ const SearchForm = ({ issues }) => {
                 issue_details={issue.issue_details}
                 key={issue.id}
               />
+              <Link to={`issue-list/${issue.id}`}>More Info</Link>{" "}
+              {/* added link to each individual detailed issue page */}
             </div>
           );
         })}
