@@ -1,9 +1,11 @@
 // Yen
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import {Button} from "../Style";
+import {axiosWithAuth} from "../../utils/axiosWithAuth";
+import {useHistory} from "react-router-dom";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState([]);
