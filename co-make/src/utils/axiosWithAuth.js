@@ -8,9 +8,10 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     // config object
-    baseURL: "http://localhost:5000/api/issues",
+    baseURL: "https://bw-pt-co-make5.herokuapp.com/api",
     headers: {
       authorization: token,
     },
   });
 };
+

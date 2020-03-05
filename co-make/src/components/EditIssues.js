@@ -3,7 +3,7 @@
 import React, { useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
-import { IssueContext } from '../IssueContext';
+import { IssueContext } from '../contexts/IssueContext';
 
 const initialIssue = {
   issue_name: '',
