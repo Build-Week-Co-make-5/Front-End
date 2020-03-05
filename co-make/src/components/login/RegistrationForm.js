@@ -67,7 +67,7 @@ const FormikRegistrationForm = withFormik({
     username: Yup.string().required("Please create a valid username"),
     password: Yup.string().required("Don't forget to create your password!"),
     email: Yup.string().required("Kindly include your email address"),
-    city: Yup.string().required("Kindly let us know which city you reside in!")
+    city: Yup.string().required("Kindly let us know which city you reside in!!")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log("submitting!", values);
