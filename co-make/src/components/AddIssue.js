@@ -1,8 +1,13 @@
+// useState - this hook allows us to use state in function components (the equivalent to this.state and this.setState in class components)
+
+// useContext - this hook takes in a context object and returns whatever is passed in as a value prop in MyContext.Provider. 
+
 import React, { useState, useEffect, useContext } from 'react';
 import { IssueContext } from '../contexts/IssueContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const AddIssue = issue => {
+const AddIssue = props => {
+  const [issues, setIssues] = useContext(IssueContext);
 
   const [issue_name, setIssueName] = useState('');
   const [issue_location, setIssueLocation] = useState('');
@@ -11,7 +16,16 @@ const AddIssue = issue => {
   const [imgURL, setImgURL] = useState('');
   const [issue_details, setIssueDetails] = useState('');
 
-  const [issues, setIssues] = useContext(IssueContext);
+  const handleChanges = event => {
+    setIssues({ ...issues, [event.target.name]: event.target.value });
+    console.log(event.target.name);
+  };
+
+  const submitForm = event => {
+    event.preventDefault();
+    props.addNewIssue(issues);
+    setIssues(IssueContext) // to clear out inputs - re-updating our state to empty strings
+  };
 
   const updateIssueName = (e) => {
     setIssueName(e.target.value);
@@ -40,8 +54,6 @@ const AddIssue = issue => {
   const addIssue = e => {
     e.preventDefault();
     setIssues(prevIssues => [...prevIssues, { issue_name: issue_name, issue_location: issue_location, category: category, priority: priority }]);
-    
-
   };
 
   useEffect(() => {
@@ -56,6 +68,7 @@ const AddIssue = issue => {
         console.log("API Data Not Pulling In", err);
       });
   }, []);
+
 
   return (
     <form onSubmit={addIssue}>

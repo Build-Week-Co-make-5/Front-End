@@ -7,7 +7,10 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 
 const LoginForm = ({ values, errors, touched, status }) => {
-  const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
+  const [loginInfo, setLoginInfo] = useState({
+    email: "",
+    password: ""
+  });
 
   const handleChange = e => {
     setLoginInfo({
@@ -22,10 +25,10 @@ const LoginForm = ({ values, errors, touched, status }) => {
     axiosWithAuth()
       .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values)
       .then(res => {
-        console.log("success", res)
-        localStorage.setItem("token", res.data.token)
-        history.push("/issue-list")
-    })
+        console.log("success", res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/issue-list");
+      })
       .catch(err => console.log("Oops, there's an error", err));
   };
 
@@ -83,5 +86,5 @@ const FormikLoginForm = withFormik({
   })
 })(LoginForm);
 
-// replaced LoginFrom with FormikLoginForm
+// replaced LoginForm with FormikLoginForm
 export default FormikLoginForm;
