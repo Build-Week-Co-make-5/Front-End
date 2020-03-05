@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import {Button} from "../Style";
-import {axiosWithAuth} from "../../utils/axiosWithAuth";
-import {useHistory} from "react-router-dom";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState({
@@ -127,7 +125,7 @@ const FormikRegistrationForm = withFormik({
     password: Yup.string().required("Don't forget to create your password!"),
     email: Yup.string().required("Kindly include your email address"),
     city: Yup.string().required("Kindly let us know which city you reside in!")
-  }),
+  })
 })(RegistrationForm);
 
 export default FormikRegistrationForm;
