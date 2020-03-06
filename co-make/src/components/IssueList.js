@@ -5,7 +5,6 @@ import axios from "axios";
 import "../App.css";
 // import { Link } from "react-router-dom"; moved to SearchForm
 import { Route } from "react-router-dom"; //created new route
-// import { Link } from "react-router-dom"; // moved to SearchForm
 import Issue from "./Issue";
 // import Images from "./Images/img_1.jpg";
 import Image1 from "./Image1/img_1.jpg";
@@ -43,13 +42,14 @@ function IssueList() {
         <img src={Image1} alt="issue images" />
         <div>
           <SearchForm issues={issues} />
+          <Route path="/issue-list/:id" component={Issue} />
           {/* added a Route to render each individual issue page by ID */}
-          <Route
+          {/* <Route
             path="/issue-list/:id"
             render={renderProps => {
               return <Issue {...renderProps} data={issues} />;
             }}
-          />
+          /> */}
         </div>
       </div>
     )
