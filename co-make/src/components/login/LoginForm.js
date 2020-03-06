@@ -38,10 +38,11 @@ const LoginForm = ({ values, errors, touched, status }) => {
         <Field
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="example@example.com" /* changed placeholder from email */
           className="input"
-          value={loginInfo.email}
-          onChange={handleChange}
+          // Formik already handles input values and onChange
+          // value={loginInfo.email}
+          // onChange={handleChange}
         />
         {touched.email && errors.email && (
           <p className="errors">{errors.email}</p>
@@ -52,15 +53,15 @@ const LoginForm = ({ values, errors, touched, status }) => {
           name="password"
           placeholder="password"
           className="input"
-          value={loginInfo.password}
-          onChange={handleChange}
+          // Formik already handles input values and onChange
+          // value={loginInfo.password}
+          // onChange={handleChange}
         />
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
         <Button type="submit">Login</Button>
       </Form>
-
       {/* {loginInfo.map(user => {
         return (
           <ul key={user.id}>
@@ -68,7 +69,8 @@ const LoginForm = ({ values, errors, touched, status }) => {
             <li>Password: {user.password}</li>
           </ul>
         );
-      })} */}
+      })} */}{" "}
+      {/* dummy data to show submit form was working initially no longer needed */}
     </div>
   );
 };
@@ -77,13 +79,13 @@ const FormikLoginForm = withFormik({
   mapPropsToValues({ email, password }) {
     return {
       email: email || "",
-      password: password || "",
+      password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
     email: Yup.string().required("Please enter your email address"),
-    password: Yup.string().required("Please enter your password"),
-  }),
+    password: Yup.string().required("Please enter your password")
+  })
 })(LoginForm);
 
 // replaced LoginForm with FormikLoginForm

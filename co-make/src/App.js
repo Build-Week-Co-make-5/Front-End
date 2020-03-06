@@ -52,7 +52,7 @@ function App() {
             /> */}
             <Route exact path="/" component={LandingPage} />
             <Route path="/about" component={About} />
-            <Route path="/issue" component={Issue} />
+            {/* <Route path="/issue" component={Issue} /> */} {/* Route changed to /protected/:id and moved to IssueList */}
             <Route path="/addIssue" component={AddIssue} />
             <Route path="/editIssues" component={EditIssues} />
           </Switch>

@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background: #57a6a9;
+  background: #f8f8ff;
   padding-bottom: 40vh; /* temporary way of getting rid of white space */
 }
 
@@ -85,16 +85,18 @@ img {
   display: flex;
 }
 
-.search-form .header button {
+.search-form .header .search-link {
   width: 20%;
   margin-right: 5%;
-  background: #5857a9;
-  border: 0;
-  border-radius: 3px;
 }
 
-.search-form .header button .search-link {
+.search-form .header .search-link button {
   text-decoration: none;
+  width: 100%;
+  height: 2rem;
+  border: 0;
+  border-radius: 3px;
+  background: #5857a9;
   color: white;
 }
 
@@ -119,8 +121,6 @@ img {
   width: 90%;
   margin: 1rem auto;
   border: 2px solid #5857a9;
-  /* background: cornsilk; */
-  color: white;
 }
 
 .issue-card .issue-desc {

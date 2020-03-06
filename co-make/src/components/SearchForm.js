@@ -27,48 +27,49 @@ const SearchForm = ({ issues }) => {
     setSearchResults(results);
   }, [searchTerm, issues]);
 
-
   //  useEffect(() => {
   //     console.log(issues);
   //     setSearchResults(issues)},[issues])
   // componentDidUpdate re-render the element
-    useEffect(() => {
-      const getSearch = () => {
-        axiosWithAuth()
-          .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
-          .then(response => {
-            console.log("API IS HERE: ", response.data);
-            setSearchResults(response.data);
-          })
-          .catch(error => {
-            console.log("Whoops go back, that's an error!", error);
-          });
-      };
-
-      const results = issues.filter(stat => {
-        return (
-          stat.register.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          stat.login.toLowerCase().includes(searchTerm.toLowerCase)) ||
-          stat.users.toLowerCase().includes(searchTerm.toLowerCase) ||
-          {/* Add all of the keys here */}
+  useEffect(() => {
+    const getSearch = () => {
+      axiosWithAuth()
+        .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
+        .then(response => {
+          console.log("API IS HERE: ", response.data);
+          setSearchResults(response.data);
+        })
+        .catch(error => {
+          console.log("Whoops go back, that's an error!", error);
         });
+    };
 
-        getSearch();
-        setSearchResults(results);
-        //eslint-disable-next-line
-    }, [searchTerm]);
-    console.log(issues);
+    const results = issues.filter(stat => {
+      return (
+        stat.register.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        stat.login.toLowerCase().includes(searchTerm.toLowerCase) ||
+        stat.users.toLowerCase().includes(searchTerm.toLowerCase) ||
+        {
+          /* Add all of the keys here */
+        }
+      );
+    });
+
+    getSearch();
+    setSearchResults(results);
+    //eslint-disable-next-line
+  }, [searchTerm]);
+  console.log(issues);
 
   return (
     // console.log("searchResults", searchResults),
     // console.log("searchTerm", searchTerm),
     <div className="search-form">
       <section className="header">
-        <button>
-          <Link className="search-link" to="/addIssue">
-            Add Issue
-          </Link>
-        </button>
+        <Link className="search-link" to="/addIssue">
+          <button>Add Issue</button>
+        </Link>
+        {/* inverted button & link order for better functionality */}
         <form className="search-bar">
           <input
             id="title"
@@ -83,6 +84,7 @@ const SearchForm = ({ issues }) => {
       </section>
       <div className="issue-list">
         {searchResults.map(issue => {
+          console.log("issue-id", issue.id);
           return (
             <div>
               <Issue
@@ -90,13 +92,22 @@ const SearchForm = ({ issues }) => {
                 issue_location={issue.issue_location}
                 category={issue.category}
                 priority={issue.priority}
-                imgURL={issue.imgURL}
+                imgUrl={issue.imgUrl} // changed imgURL to imgUrl
                 issue_details={issue.issue_details}
                 key={issue.id}
               />
+              <Link to={`protected/${issue.id}`}>More Info</Link>{" "}
+              {/* added link to each individual detailed issue page */}
             </div>
           );
         })}
+        {/* new Search (
+          Array
+            .from(searchResults)
+            .sort((a,b) => {
+              return a.id - b.id;
+            })
+        ) */}
       </div>
     </div>
   );

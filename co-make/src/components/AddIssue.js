@@ -14,7 +14,7 @@ const AddIssue = props => {
   const [issue_location, setIssueLocation] = useState('');
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
-  const [imgURL, setImgURL] = useState('');
+  const [imgUrl, setImgUrl] = useState(''); // changed to imgUrl
   const [issue_details, setIssueDetails] = useState('');
 
   const handleChanges = event => {
@@ -44,8 +44,8 @@ const AddIssue = props => {
     setPriority(e.target.value);
   };
 
-  const updateImgURL = e => {
-    setImgURL(e.target.value);
+  const updateImgUrl = e => { // changed to imgUrl
+    setImgUrl(e.target.value);
   };
 
   const updateIssueDetails = e => {
@@ -136,10 +136,10 @@ const AddIssue = props => {
         <input
           type="url"
           imgURL="imgURL"
-          value={imgURL}
-          onChange={updateImgURL}
+          value={imgUrl} // changed to imgUrl
+          onChange={updateImgUrl} // changed to imgUrl
           placeholder="Add Image URL"
-          key={imgURL.id}
+          key={imgUrl.id} // changed to imgUrl
         />
         <input
           type="text"

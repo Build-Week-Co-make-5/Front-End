@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import axios from "axios";
-import Images from "./Images/img_1.jpg";
 import "../App.css";
+// import { Link } from "react-router-dom"; moved to SearchForm
+import { Route } from "react-router-dom"; //created new route
+import Images from "./Images/img_1.jpg";
 // import { Link } from "react-router-dom"; // moved to SearchForm
+import Issue from "./Issue";
 
 console.log(Images);
 
@@ -17,14 +20,13 @@ function IssueList() {
     category: "",
     priority: "",
     imgURL: "",
-    issue_details: "",
+    issue_details: ""
   });
 
   useEffect(() => {
     const getIssues = () => {
       axios
-        .get("https://bw-pt-co-make5.herokuapp.com/api/issues",
-        )
+        .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
         .then(res => {
           console.log("res", res);
           setIssues(res.data.issue);
@@ -42,6 +44,13 @@ function IssueList() {
     (
       <div>
         <SearchForm issues={issues} />
+        {/* added a Route to render each individual issue page by ID */}
+        <Route
+          path="/protected/:id"
+          render={renderProps => {
+            return <Issue {...renderProps} data={issues} />;
+          }}
+        />
       </div>
     )
     </div>
@@ -49,4 +58,3 @@ function IssueList() {
 };
 
 export default IssueList;
-

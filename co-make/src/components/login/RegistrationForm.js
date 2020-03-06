@@ -43,8 +43,9 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="fullname"
           placeholder="fullname"
           className="input"
-          onChange={handleChange}
-          value={userData.fullname}
+          // Formik already handles input values and onChange
+          // onChange={handleChange}
+          // value={userData.fullname}
         />
         {touched.fullname && errors.fullname && (
           <p className="errors">{errors.fullname}</p>
@@ -54,8 +55,9 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="username"
           placeholder="username"
           className="input"
-          onChange={handleChange}
-          value={userData.username}
+          // Formik already handles input values and onChange
+          // onChange={handleChange}
+          // value={userData.username}
         />
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
@@ -65,8 +67,9 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="email"
           placeholder="email"
           className="input"
-          onChange={handleChange}
-          value={userData.email}
+          // Formik already handles input values and onChange
+          // onChange={handleChange}
+          // value={userData.email}
         />
         {touched.email && errors.email && (
           <p className="errors">{errors.email}</p>
@@ -76,8 +79,9 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="password"
           placeholder="password"
           className="input"
-          onChange={handleChange}
-          value={userData.password}
+          // Formik already handles input values and onChange
+          // onChange={handleChange}
+          // value={userData.password}
         />
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
@@ -87,8 +91,9 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
           name="city"
           placeholder="city"
           className="input"
-          onChange={handleChange}
-          value={userData.city}
+          // Formik already handles input values and onChange
+          // onChange={handleChange}
+          // value={userData.city}
         />
         {touched.city && errors.city && <p className="errors">{errors.city}</p>}
         <Button type="submit">Register</Button>
