@@ -1,14 +1,14 @@
 // Good place to add state
-import React, { useState, useContext, useEffect } from "react";
-import Issue from "./Issue";
-import { IssueContext } from "../contexts/IssueContext";
-import AddIssue from "./AddIssue";
+import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
-import axios from 'axios';
+import axios from "axios";
+import Images from "./Images/img_1.jpg";
 import "../App.css";
-// import { Link } from "react-router-dom"; moved to SearchForm
+// import { Link } from "react-router-dom"; // moved to SearchForm
 
-const IssueList = () => {
+console.log(Images);
+
+function IssueList() {
   const [issues, setIssues] = useState([]);
 
   const [newIssue, setNewIssue] = useState({
@@ -31,17 +31,20 @@ const IssueList = () => {
         })
         .catch(error => console.log(error));
     };
-
     getIssues();
   }, []);
 
+  // Import result is the URL of my image
   return (
+    <div className="issue-list">
+    <img src={Images} alt="issue images" />
     console.log("issues", issues),
     (
       <div>
         <SearchForm issues={issues} />
       </div>
     )
+    </div>
   );
 };
 

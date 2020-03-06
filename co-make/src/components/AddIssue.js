@@ -1,10 +1,11 @@
 // useState - this hook allows us to use state in function components (the equivalent to this.state and this.setState in class components)
-
 // useContext - this hook takes in a context object and returns whatever is passed in as a value prop in MyContext.Provider. 
 
 import React, { useState, useEffect, useContext } from 'react';
 import { IssueContext } from '../contexts/IssueContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { setNestedObjectValues } from 'formik';
+import axios from "axios";
 
 const AddIssue = props => {
   const [issues, setIssues] = useContext(IssueContext);
@@ -69,61 +70,89 @@ const AddIssue = props => {
       });
   }, []);
 
+  // const state = {
+  //   selectedFile: null
+  // }
+
+  // Now it's stored in my state
+  // const fileSelectedHandler = event => {
+  //   setState({
+  //     selectedFile: event.target.files[0]
+  //   })
+  // }
+  
+  // http request endpoint
+  // const fileUploadHandler = () => {
+  //   const fd = new FormData();
+  //   fd.append('image', state.slectedFile, state.selectedFile.name);
+  //   axios
+  //     .post('URL/API ENDPOINT GOES HERE', fd) // Juan working on it for URL first
+  //     .then(res => {
+  //       console.log(res);
+  //     });
+      // .catch
 
   return (
-    <form onSubmit={addIssue}>
-    {console.log("issuessssss",issues)}
-      <input
-        type="text"
-        issue_name="issue_name"
-        value={issue_name}
-        onChange={updateIssueName}
-        placeholder="Add Title"
-        key={issue_name.id}
-      />
-      <input
-        type="text"
-        issue_location="issue_location"
-        value={issue_location}
-        onChange={updateIssueLocation}
-        placeholder="Add Location"
-        key={issue_location.id}
-      />
-      <input
-        type="text"
-        category="category"
-        value={category}
-        onChange={updateCategory}
-        placeholder="Add Category"
-        key={category.id}
-      />
-      <input
-        type="text"
-        priority="priority"
-        value={priority}
-        onChange={updatePriority}
-        placeholder="Add Priority"
-        key={priority.id}
-      />
-      <input
-        type="url"
-        imgURL="imgURL"
-        value={imgURL}
-        onChange={updateImgURL}
-        placeholder="Add Image URL"
-        key={imgURL.id}
-      />
-      <input
-        type="text"
-        issue_details="issue_details"
-        value={issue_details}
-        onChange={updateIssueDetails}
-        placeholder="Add Issue Details"
-        key={issue_details.id}
-      />
-      <button>Submit</button>
-    </form>
+    <>
+      <div className="addIssue">
+        {/* <input type="file" onChange={fileSelectedHandler} />
+        <button onClick={fileUploadHandler}>Upload</button>
+        {console.log("MY FILES!", fileSelectedHandler)} */}
+      </div>
+      <form onSubmit={addIssue}>
+      {console.log("issuessssss",issues)}
+        <input
+          type="text"
+          issue_name="issue_name"
+          value={issue_name}
+          onChange={updateIssueName}
+          placeholder="Add Title"
+          key={issue_name.id}
+        />
+        <input
+          type="text"
+          issue_location="issue_location"
+          value={issue_location}
+          onChange={updateIssueLocation}
+          placeholder="Add Location"
+          key={issue_location.id}
+        />
+        <input
+          type="text"
+          category="category"
+          value={category}
+          onChange={updateCategory}
+          placeholder="Add Category"
+          key={category.id}
+        />
+        <input
+          type="text"
+          priority="priority"
+          value={priority}
+          onChange={updatePriority}
+          placeholder="Add Priority"
+          key={priority.id}
+        />
+        <input
+          type="url"
+          imgURL="imgURL"
+          value={imgURL}
+          onChange={updateImgURL}
+          placeholder="Add Image URL"
+          key={imgURL.id}
+        />
+        <input
+          type="text"
+          issue_details="issue_details"
+          value={issue_details}
+          onChange={updateIssueDetails}
+          placeholder="Add Issue Details"
+          key={issue_details.id}
+        />
+        <button>Submit</button>
+      </form>
+    </>
   );
-}
+};
 
 export default AddIssue;
