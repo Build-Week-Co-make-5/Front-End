@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 
-const Issue = ({
-  issue_name,
-  issue_location,
-  category,
-  priority,
-  imgURL,
-  issue_details,
-  data // added data prop from IssueList
-  // N.B. MIGHT NEED TO REFACTOR ALL CODE TO JUST CALL PROPS
-}) => {
+// {issue_name, issue_location, category, priority, imgURL, issue_details,} refactored props
+const Issue = (props) => {
   const [upvotes, setUpvotes] = useState(0);
   const [disabled, setDisabled] = useState(false);
 
@@ -25,17 +17,17 @@ const Issue = ({
   console.log("issue found!", issue);
 
   return (
-    // might refactor the code below to reflect each ID's issue props
+    // refactored the code below to reflect each ID's issue props ***
     <div className="issue-card">
-      <h3>{issue_name}</h3>
+      <h3>{props.issue_name}</h3>
       <div className="issue-desc">
-        <p className="issue-img">{imgURL}</p>
+        <p className="issue-img">{props.imgURL}</p>
         {/* changed imgURL back to p element from img element */}
         <div className="info">
-          <p>Location: {issue_location}</p>
-          <p>Category: {category}</p>
-          <p>Priority: {priority}</p>
-          <p>Description: {issue_details}</p>
+          <p>Location: {props.issue_location}</p>
+          <p>Category: {props.category}</p>
+          <p>Priority: {props.priority}</p>
+          <p>Description: {props.issue_details}</p>
         </div>
       </div> {/* issue-desc */}
       <section className="upvotes">
