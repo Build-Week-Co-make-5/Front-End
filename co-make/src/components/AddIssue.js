@@ -45,7 +45,7 @@ const AddIssue = props => {
   };
 
   const updateImgUrl = e => { // changed to imgUrl
-    setImgURL(e.target.value);
+    setImgUrl(e.target.value);
   };
 
   const updateIssueDetails = e => {
