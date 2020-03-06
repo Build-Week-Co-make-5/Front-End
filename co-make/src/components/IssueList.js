@@ -7,6 +7,7 @@ import "../App.css";
 import { Route } from "react-router-dom"; //created new route
 import Images from "./Images/img_1.jpg";
 // import { Link } from "react-router-dom"; // moved to SearchForm
+import Issue from "./Issue";
 
 console.log(Images);
 
