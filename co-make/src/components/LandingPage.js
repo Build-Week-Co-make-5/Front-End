@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const LandingPage = () => {
+function LandingPage() {
   return (
     <div>Landing Page</div>
   );
 };
+
+export default LandingPage;

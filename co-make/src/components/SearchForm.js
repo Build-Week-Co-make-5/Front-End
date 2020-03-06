@@ -96,7 +96,7 @@ const SearchForm = ({ issues }) => {
                 issue_details={issue.issue_details}
                 key={issue.id}
               />
-              <Link to={`issue-list/${issue.id}`}>More Info</Link>{" "}
+              <Link to={`protected/${issue.id}`}>More Info</Link>{" "}
               {/* added link to each individual detailed issue page */}
             </div>
           );

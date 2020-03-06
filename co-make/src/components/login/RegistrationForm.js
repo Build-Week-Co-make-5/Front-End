@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link } from "react-router-dom";
+// import { withRouter, Link } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
@@ -109,7 +109,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
             <li>City: {user.city}</li>
           </ul>
         );
-      })} */}
+      })} */} 
     </div>
   );
 };
