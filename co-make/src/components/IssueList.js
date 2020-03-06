@@ -38,23 +38,23 @@ function IssueList() {
 
   // Import result is the URL of my image
   return (
-    <div className="issue-list">
-    <img src={Images} alt="issue images" />
     console.log("issues", issues),
     (
-      <div>
-        <SearchForm issues={issues} />
-        {/* added a Route to render each individual issue page by ID */}
-        <Route
-          path="/protected/:id"
-          render={renderProps => {
-            return <Issue {...renderProps} data={issues} />;
-          }}
-        />
+      <div className="issue-list">
+        <img src={Images} alt="issue images" />
+        <div>
+          <SearchForm issues={issues} />
+          {/* added a Route to render each individual issue page by ID */}
+          <Route
+            path="/issue-list/:id"
+            render={renderProps => {
+              return <Issue {...renderProps} data={issues} />;
+            }}
+          />
+        </div>
       </div>
     )
-    </div>
   );
-};
+}
 
 export default IssueList;
