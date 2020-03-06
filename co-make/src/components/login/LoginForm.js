@@ -24,7 +24,7 @@ const LoginForm = ({ values, errors, touched, status }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", loginInfo)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values) // changed from loginInfo to values
       .then(res => {
         console.log("success", res);
         localStorage.setItem("token", res.data.token);

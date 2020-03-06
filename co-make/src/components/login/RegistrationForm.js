@@ -26,7 +26,7 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/register", userData)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/register", values) // changed from userData to values
       .then(res => {
         console.log("success", res);
         localStorage.setItem("token", res.data.token);
