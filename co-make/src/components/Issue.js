@@ -21,7 +21,7 @@ const Issue = (props) => {
     <div className="issue-card">
       <h3>{props.issue_name}</h3>
       <div className="issue-desc">
-        <p className="issue-img">{props.imgURL}</p>
+        <p className="issue-img">{props.imgUrl}</p> {/* changed imgRUL to imgUrl */}
         {/* changed imgURL back to p element from img element */}
         <div className="info">
           <p>Location: {props.issue_location}</p>

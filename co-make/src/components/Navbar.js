@@ -28,7 +28,7 @@ function Navbar() {
         <Link className="nav-links" to="/about">
           About
         </Link>
-        <Link className="nav-links" to="/issue-list">
+        <Link className="nav-links" to="/protected"> {/* changed link to /protected */}
           Issue List
         </Link>
         <Link className="nav-links" to="/issue">

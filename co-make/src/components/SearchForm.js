@@ -92,7 +92,7 @@ const SearchForm = ({ issues }) => {
                 issue_location={issue.issue_location}
                 category={issue.category}
                 priority={issue.priority}
-                imgURL={issue.imgURL}
+                imgURL={issue.imgUrl} // changed imgURL to imgUrl
                 issue_details={issue.issue_details}
                 key={issue.id}
               />
