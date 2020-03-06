@@ -13,6 +13,7 @@ import { Route } from "react-router-dom"; //created new route
 // import Image6 from "./Image6/img_6.jpg";
 // import { Link } from "react-router-dom"; // moved to SearchForm
 import Issue from "./Issue";
+import Images from "./Images/img_1.jpg"; 
 
 // console.log(Image1);
 // console.log(Image2);
@@ -51,6 +52,7 @@ function IssueList() {
     console.log("issues", issues),
     (
       <div className="issue-list">
+        <img src={Images} alt="issue images" />
         {/* <img src={Image1} alt="issue image1" />
         <img src={Image2} alt="issue image2" />
         <img src={Image3} alt="issue image3" />
