@@ -55,6 +55,7 @@ function App() {
             {/* <Route path="/issue" component={Issue} /> */} {/* Route changed to /protected/:id and moved to IssueList */}
             <Route path="/addIssue" component={AddIssue} />
             <Route path="/editIssues" component={EditIssues} />
+            <Route path="/issue-list" component={IssueList} />
           </Switch>
         </div>
       </IssueProvider>
