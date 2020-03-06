@@ -19,7 +19,6 @@ const EditIssues = ({ issue, updateIssues }) => {
   const [issues, setIssues] = useContext(IssueContext);
   const [editing, setEditing] = useState(false);
   const [issueToEdit, setIssueToEdit] = useState(initialIssue);
-  const [sparkly, setSparkly] = useState(initialIssue);
   const history = useHistory()
 
   const editIssue = issue => {
@@ -53,18 +52,6 @@ const EditIssues = ({ issue, updateIssues }) => {
         window.location.reload(false);
       })
       .catch(err => console.log(err));
-  };
-
-  const addIssue = e => {
-    e.preventDefault();
-    setSparkly({ ...sparkly });
-    axiosWithAuth()
-      .post('/issues', sparkly)
-      .then(res => {
-        setSparkly(initialIssue);
-        window.location.reload(false);
-      })
-      .catch(err => console.log('No issues added, sorry', err));
   };
 
   const handleDelete = () => {
@@ -128,37 +115,7 @@ const EditIssues = ({ issue, updateIssues }) => {
               </label>
             </form>
             )}
-            </div>
-            <form onSubmit={addIssue}>
-              <legend>Add Issue</legend>
-              <label>
-                Issue Name:
-                <input
-                  onChange={e =>
-                    setSparkly({
-                      ...sparkly, 
-                      issue: e.target.value 
-                    })
-                  }
-                  value={sparkly.issue}
-                />
-              </label>
-              {/* <label>
-                New Issue:
-                <input
-                  type="issue"
-                  onChange={e =>
-                    setSparkly({
-                      ...issueToEdit,
-                      issue: { new: e.target.value }
-                    })}
-                  value={sparkly.issues.new}
-                />
-              </label> */}
-              <div className="button-row">
-                <button type="submit">Add Issue</button>
-              </div>
-          </form>
+          </div>
       </div>
   );
 };
