@@ -7,7 +7,8 @@ import "../App.css";
 import { Route } from "react-router-dom"; //created new route
 // import { Link } from "react-router-dom"; // moved to SearchForm
 import Issue from "./Issue";
-import Images from "./Images/img_1.jpg"; 
+// import Images from "./Images/img_1.jpg";
+import Image1 from "./Image1/img_1.jpg";
 
 function IssueList() {
   const [issues, setIssues] = useState([]);
@@ -18,7 +19,7 @@ function IssueList() {
     category: "",
     priority: "",
     imgurl: "",
-    issue_details: "",
+    issue_details: ""
   });
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function IssueList() {
     console.log("issues", issues),
     (
       <div className="issue-list">
-        <img src={Images} alt="issue images" />
+        <img src={Image1} alt="issue images" />
         <div>
           <SearchForm issues={issues} />
           {/* added a Route to render each individual issue page by ID */}

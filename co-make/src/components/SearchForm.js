@@ -37,7 +37,7 @@ const SearchForm = ({ issues }) => {
         .get("https://bw-pt-co-make5.herokuapp.com/api/issues") // Co-Make API key here
         .then(response => {
           console.log("API IS HERE: ", response.data);
-          setSearchResults(response.data);
+          setSearchResults(response.data.issue); // changed to response.data.issue
         })
         .catch(error => {
           console.log("Whoops go back, that's an error!", error);
@@ -47,8 +47,8 @@ const SearchForm = ({ issues }) => {
     const results = issues.filter(stat => {
       return (
         stat.register.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        stat.login.toLowerCase().includes(searchTerm.toLowerCase) ||
-        stat.users.toLowerCase().includes(searchTerm.toLowerCase) ||
+        stat.login.toLowerCase().includes(searchTerm.toLowerCase()) || // typo, added () toLowerCase
+        stat.users.toLowerCase().includes(searchTerm.toLowerCase()) || // typo, added () toLowerCase
         {
           /* Add all of the keys here */
         }
@@ -70,7 +70,7 @@ const SearchForm = ({ issues }) => {
           <button>Add Issue</button>
         </Link>
         {/* inverted button & link order for better functionality */}
-        <form className="search-bar">
+        {/* <form className="search-bar">
           <input
             id="title"
             type="text"
@@ -79,8 +79,9 @@ const SearchForm = ({ issues }) => {
             onChange={handleChange}
             value={searchTerm}
           />
-          {/* <button>Submit</button> */}
-        </form>
+        </form> */}
+        {/* <button>Submit</button> */}
+        {/* removed search bar */}
       </section>
       <div className="issue-list">
         {searchResults.map(issue => {

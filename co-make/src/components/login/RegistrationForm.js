@@ -111,7 +111,7 @@ const FormikRegistrationForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    full_name: Yup.string().required("Kindly insert your file_name as per ID"),
+    full_name: Yup.string().required("Kindly insert your full_name as per ID"), // fixed typo
     password: Yup.string().required("Don't forget to create your password!"),
     email: Yup.string().required("Kindly include your email address"),
     city: Yup.string().required("Kindly let us know which city you reside in!!")
