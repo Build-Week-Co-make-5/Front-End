@@ -5,6 +5,7 @@ const Issue = (props) => {
   const [upvotes, setUpvotes] = useState(0);
   const [disabled, setDisabled] = useState(false);
 
+<<<<<<< HEAD
   // commented out all code below as it's not working, will fix after everything else is done
 
   // create a paramItemId variable to match to respective :id URLs
@@ -18,6 +19,8 @@ const Issue = (props) => {
 
   // console.log("issue found!", issue);
 
+=======
+>>>>>>> a47b4d8a7d81ea66135c2e104d1e4c6305f65a58
   return (
     // refactored the code below to reflect each ID's issue props ***
     <div className="issue-card">
