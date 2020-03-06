@@ -8,8 +8,7 @@ import {Button} from "../Style";
 
 const RegistrationForm = ({ values, errors, touched, status }) => {
   const [userData, setUserData] = useState({
-    fullname: "",
-    username: "",
+    full_name: "",
     email: "",
     password: "",
     city: ""
@@ -24,9 +23,10 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
 
   let history = useHistory();
 
-  const handleSubmit = values => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axiosWithAuth()
-      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/login", values)
+      .post("https://bw-pt-co-make5.herokuapp.com/api/auth/register", userData)
       .then(res => {
         console.log("success", res);
         localStorage.setItem("token", res.data.token);
@@ -40,27 +40,15 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
       <Form className="register-format" onSubmit={handleSubmit}>
         <Field
           type="text"
-          name="fullname"
-          placeholder="fullname"
+          name="full_name"
+          placeholder="full_name"
           className="input"
           // Formik already handles input values and onChange
           // onChange={handleChange}
           // value={userData.fullname}
         />
-        {touched.fullname && errors.fullname && (
-          <p className="errors">{errors.fullname}</p>
-        )}
-        <Field
-          type="text"
-          name="username"
-          placeholder="username"
-          className="input"
-          // Formik already handles input values and onChange
-          // onChange={handleChange}
-          // value={userData.username}
-        />
-        {touched.username && errors.username && (
-          <p className="errors">{errors.username}</p>
+        {touched.full_name && errors.full_name && (
+          <p className="errors">{errors.full_name}</p>
         )}
         <Field
           type="email"
@@ -103,7 +91,6 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
         return (
           <ul key={user.id}>
             <li>Fullname: {user.fullname}</li>
-            <li>Username: {user.username}</li>
             <li>Email: {user.email}</li>
             <li>Password: {user.password}</li>
             <li>City: {user.city}</li>
@@ -115,18 +102,16 @@ const RegistrationForm = ({ values, errors, touched, status }) => {
 };
 
 const FormikRegistrationForm = withFormik({
-  mapPropsToValues({ fullname, username, password, email, city }) {
+  mapPropsToValues({ full_name, password, email, city }) {
     return {
-      fullname: fullname || "",
-      username: username || "",
+      full_name: full_name || "",
       email: email || "",
       password: password || "",
       city: city || "",
     };
   },
   validationSchema: Yup.object().shape({
-    fullname: Yup.string().required("Kindly insert your full name as per ID"),
-    username: Yup.string().required("Please create a valid username"),
+    full_name: Yup.string().required("Kindly insert your file_name as per ID"),
     password: Yup.string().required("Don't forget to create your password!"),
     email: Yup.string().required("Kindly include your email address"),
     city: Yup.string().required("Kindly let us know which city you reside in!!")

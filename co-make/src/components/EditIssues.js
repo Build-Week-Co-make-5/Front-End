@@ -10,7 +10,7 @@ const initialIssue = {
   issue_location: '',
   category: '',
   priority: '',
-  imgURL: '',
+  imgurl: '',
   issue_details: ''
 };
 

@@ -1,20 +1,16 @@
 // useState - this hook allows us to use state in function components (the equivalent to this.state and this.setState in class components)
 // useContext - this hook takes in a context object and returns whatever is passed in as a value prop in MyContext.Provider. 
-
 import React, { useState, useEffect, useContext } from 'react';
 import { IssueContext } from '../contexts/IssueContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { setNestedObjectValues } from 'formik';
-import axios from "axios";
 
 const AddIssue = props => {
   const [issues, setIssues] = useContext(IssueContext);
-
   const [issue_name, setIssueName] = useState('');
   const [issue_location, setIssueLocation] = useState('');
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
-  const [imgUrl, setImgUrl] = useState(''); // changed to imgUrl
+  const [imgurl, setImgUrl] = useState('');
   const [issue_details, setIssueDetails] = useState('');
 
   const handleChanges = event => {
@@ -44,7 +40,7 @@ const AddIssue = props => {
     setPriority(e.target.value);
   };
 
-  const updateImgUrl = e => { // changed to imgUrl
+  const updateImgUrl = e => {
     setImgUrl(e.target.value);
   };
 
@@ -135,11 +131,11 @@ const AddIssue = props => {
         />
         <input
           type="url"
-          imgURL="imgURL"
-          value={imgUrl} // changed to imgUrl
-          onChange={updateImgUrl} // changed to imgUrl
+          imgURL="imgurl"
+          value={imgurl}
+          onChange={updateImgUrl}
           placeholder="Add Image URL"
-          key={imgUrl.id} // changed to imgUrl
+          key={imgurl.id}
         />
         <input
           type="text"

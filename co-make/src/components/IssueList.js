@@ -5,11 +5,9 @@ import axios from "axios";
 import "../App.css";
 // import { Link } from "react-router-dom"; moved to SearchForm
 import { Route } from "react-router-dom"; //created new route
-import Images from "./Images/img_1.jpg";
 // import { Link } from "react-router-dom"; // moved to SearchForm
 import Issue from "./Issue";
-
-console.log(Images);
+import Images from "./Images/img_1.jpg"; 
 
 function IssueList() {
   const [issues, setIssues] = useState([]);
@@ -19,8 +17,8 @@ function IssueList() {
     issue_location: "",
     category: "",
     priority: "",
-    imgURL: "",
-    issue_details: ""
+    imgurl: "",
+    issue_details: "",
   });
 
   useEffect(() => {
