@@ -1,25 +1,24 @@
 // Good place to add state
-import React, { useState, useEffect } from "react";
-import SearchForm from "./SearchForm";
+import React, { useState, useEffect, useContext } from "react";
+// import SearchForm from "./SearchForm";
 import axios from "axios";
 import "../App.css";
-// import { Link } from "react-router-dom"; moved to SearchForm
-import { Route } from "react-router-dom"; //created new route
-// import { Link } from "react-router-dom"; // moved to SearchForm
+// import { Route } from "react-router-dom"; 
 import Issue from "./Issue";
-import Images from "./Images/img_1.jpg"; 
+import { IssueContext } from "../contexts/IssueContext";
+// import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 function IssueList() {
-  const [issues, setIssues] = useState([]);
+  const [issues, setIssues] = useContext(IssueContext);
 
-  const [newIssue, setNewIssue] = useState({
-    issue_name: "",
-    issue_location: "",
-    category: "",
-    priority: "",
-    imgurl: "",
-    issue_details: "",
-  });
+  const [searchTerm, setSearchTerm] = useState("");
+  // searchResult is used to set the search result
+  const [searchResults, setSearchResults] = useState(issues);
+
+  // the handleChange method takes the event object as the argument and sets the current value of the form to the searchTerm state using setSearchTerm
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
     const getIssues = () => {
@@ -27,32 +26,82 @@ function IssueList() {
         .get("https://bw-pt-co-make5.herokuapp.com/api/issues")
         .then(res => {
           console.log("res", res);
-          setIssues(res.data.issue);
+          setIssues(res.data)
         })
         .catch(error => console.log(error));
     };
     getIssues();
-  }, []);
+  }, [setIssues]);
 
-  // Import result is the URL of my image
+
+  useEffect(() => {
+    const results = 
+      issues.filter(stat => { 
+        return (
+      stat.issue_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stat.issue_location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stat.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stat.priority.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stat.imgurl.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stat.issue_details.toLowerCase().includes(searchTerm.toLowerCase())
+    )})
+    setSearchResults(results)
+  }, [searchTerm, issues])
+
   return (
-    console.log("issues", issues),
-    (
-      <div className="issue-list">
-        <img src={Images} alt="issue images" />
-        <div>
-          <SearchForm issues={issues} />
-          {/* added a Route to render each individual issue page by ID */}
-          <Route
-            path="/issue-list/:id"
-            render={renderProps => {
-              return <Issue {...renderProps} data={issues} />;
-            }}
+    <div className="search-form">
+      <section className="header">
+        <form className="search-bar">
+          <input 
+            id="title"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            onChange={handleChange}
+            value={searchTerm}
           />
+          <button>Submit</button>
+        </form>
+      </section>
+      {searchTerm.length === 0 ? ( 
+      <div className="issue-list">
+        {issues.map((issue, index) => {
+          return (
+            <div key={index}>
+              <Issue
+                issue_name={issue.issue_name}
+                issue_location={issue.issue_location}
+                category={issue.category}
+                priority={issue.priority}
+                imgurl={issue.imgurl}
+                issue_details={issue.issue_details}
+                key={issue.id}
+              />
+            </div>
+          );
+        })}
         </div>
+      ) : ( 
+      <div className="issue-list">
+        {searchResults.map((issue, index) => {
+          return (
+            <div key={index}>
+              <Issue
+                issue_name={issue.issue_name}
+                issue_location={issue.issue_location}
+                category={issue.category}
+                priority={issue.priority}
+                imgurl={issue.imgurl}
+                issue_details={issue.issue_details}
+                key={issue.id}
+              />
+            </div>
+          );
+        })}
       </div>
-    )
-  );
+      )}
+    </div>
+  )
 }
 
 export default IssueList;

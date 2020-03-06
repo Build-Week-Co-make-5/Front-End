@@ -5,17 +5,6 @@ const Issue = (props) => {
   const [upvotes, setUpvotes] = useState(0);
   const [disabled, setDisabled] = useState(false);
 
-  // create a paramItemId variable to match to respective :id URLs
-  console.log(props.match.params.id);
-  const paramItemId = props.match.params.id;
-
-  // matches each issue id to its params id
-  const issue = props.data.find(issue => {
-    return issue.id === Number(paramItemId);
-  });
-
-  console.log("issue found!", issue);
-
   return (
     // refactored the code below to reflect each ID's issue props ***
     <div className="issue-card">
