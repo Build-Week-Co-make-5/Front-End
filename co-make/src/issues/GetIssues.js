@@ -46,18 +46,19 @@ const GetIssues = () => {
     setIssueForm({ ...issueForm, [e.target.name]: e.target.value });
   };
 
+  // componentDidMount (cDM), componentUpdate (cU)
+  // a life cycle method - aka Effect Hook
   useEffect(() => {
     axiosWithAuth()
-      .get("/api/issues", issues)
+      .get("/api/issues")
       .then(res => {
         console.log(res);
         setIssues(res.data.issue); // should be res.data.issue instead of res.data
       })
-
       .catch(err => {
         console.log(err);
       });
-  }, [issues]);
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -86,12 +87,19 @@ const GetIssues = () => {
       .delete(`/api/issues/${id}`)
       .then(res => {
         console.log(res);
-        setEvents(events.filter(item => item.id !== id));
-        setIssues(issues.filter(item => item.id !== id));
-        setIssueForm(issueForm.filter(item => item.id !== id));
+        axiosWithAuth()
+        .get("/api/issues")
+        .then(res => {
+        console.log(res);
+        setIssues(res.data.issue); // should be res.data.issue instead of res.data
+      })
+      .catch(err => {
+        console.log(err);
+      });
       });
   };
 
+  // cf = city form
   return (
     <div className="issues">
       <h2>Issues Created by Neighbors</h2>
@@ -101,7 +109,22 @@ const GetIssues = () => {
           <div key={cf.id} className="issue-card">
             <br />
             <h4>
-              Issue: <h5>{cf.issue_name}</h5>
+              Issue: <p>{cf.issue_name}</p>
+            </h4>
+            <h4>
+              Issue Location: <p>{cf.issue_location}</p>
+            </h4>
+            <h4>
+              Category: <p>{cf.category}</p>
+            </h4>
+            <h4>
+              Priority: <p>{cf.priority}</p>
+            </h4>
+            {cf.imgurl?<h4>Image URL <img src={cf.imgurl} />{" "}
+            
+            </h4>:null}
+            <h4>
+              Issue Details: <p>{cf.issue_details}</p>
             </h4>
             <div className="issue-desc">
               <div className="issue-img">
@@ -138,9 +161,9 @@ const GetIssues = () => {
         <h5> Add an Issue</h5>
         <input
           type="text"
-          name="title"
+          name="issue_name"
           placeholder="Issue"
-          value={issueForm.title}
+          value={issueForm.issue_name}
           onChange={handleChange}
         />
         <br />
@@ -157,6 +180,29 @@ const GetIssues = () => {
           name="category"
           placeholder="Category"
           value={issueForm.category}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="priority"
+          placeholder="Priority"
+          value={issueForm.priority}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="text"
+          name="imgurl"
+          placeholder="Image URL"
+          value={issueForm.imgurl}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="text"
+          name="issue_details"
+          placeholder="Issue Details"
+          value={issueForm.issue_details}
           onChange={handleChange}
         />
         <br />
