@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import IssueContext from "../contexts/IssueContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import UpdateIssues from "./UpdateIssues";
+import EditIssues from "./EditIssues";
 import styled from "styled-components";
 import { ActionBtns } from "../components/Style";
 import Upvote from "./Upvote";
@@ -101,7 +101,25 @@ const GetIssues = () => {
           <div key={cf.id} className="issue-card">
             <br />
             <h4>
+<<<<<<< Updated upstream
               Issue: <h5>{cf.issue_name}</h5>
+=======
+              Issue: <p>{cf.issue_name}</p>
+            </h4>
+            <h4>
+              Issue Location: <p>{cf.issue_location}</p>
+            </h4>
+            <h4>
+              Category: <p>{cf.category}</p>
+            </h4>
+            <h4>
+              Priority: <p>{cf.priority}</p>
+            </h4>
+            {cf.imgurl?<h4>Image URL <img src={cf.imgurl} />{" "}
+            </h4>:null}
+            <h4>
+              Issue Details: <p>{cf.issue_details}</p>
+>>>>>>> Stashed changes
             </h4>
             <div className="issue-desc">
               <div className="issue-img">
@@ -131,6 +149,11 @@ const GetIssues = () => {
               </ActionBtns>
               <UpdateIssues id={cf.id} updateInfo={issueForm} />
             </div>
+<<<<<<< Updated upstream
+=======
+            <button onClick={() => handleDelete(cf.id)}>Delete</button>
+            <EditIssues id={cf.id} updateInfo={issueForm} />
+>>>>>>> Stashed changes
           </div>
         ))}
       </Boxes>
