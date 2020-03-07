@@ -98,6 +98,7 @@ const Login = props => {
         <br />
         <br />
         <br />
+        <br />
         <footer>
           <h6>Copy Right 2020 CO-MAKE Neighborhood Issues</h6>
         </footer>

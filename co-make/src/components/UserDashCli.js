@@ -73,11 +73,3 @@ const UserDashCli = props => {
   );
 };
 export default UserDashCli;
-
-/* {classes.map(classes => 
-          <div key ={classes.id}>
-              <br/>
-              <Client>
-              <h4>Workout: <p>{classes.title}</p></h4>          
-              <h4>Instructor Id: <p>{classes.instructorId}</p></h4>          
-              <h4>Category Id: <p>{classes.categoryId}</p></h4> */
