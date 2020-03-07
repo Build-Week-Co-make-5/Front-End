@@ -30,6 +30,10 @@
 }
 
 /* Header.js */
+.container-fluid .navbar-header img {
+  height: 4rem;
+}
+
 .container-fluid .nav-links {
   text-decoration: none;
   color: #403ec2;
@@ -47,9 +51,8 @@
 .issue-card {
   width: 90%;
   margin: 1rem auto;
-  /* border: 2px solid #3EBDC2; */
-  background: #3EBDC2;
-  /* background: whitesmoke; */
+  /* background: #3EBDC2; */
+  background: #c0eef0;
   border-radius: 6px;
 }
 

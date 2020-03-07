@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import CM from "../images/CM.png";
@@ -43,10 +44,10 @@ const Login = props => {
       .post("/api/auth/login", loginz)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        //Means this will be student id of 1
+        //Means this will be user id of 1
         if (res.data.user) {
           props.history.push("/user");
-          //will be instructor of id 2
+          //will be admin of id 2
         } else if (res.data.user) {
           props.history.push("/protected");
         }
@@ -81,9 +82,13 @@ const Login = props => {
               />
             </StyleForm>
             <br />
-            <button type="submit">Sign In</button>
+            <Link to="/issues">
+              <button type="submit">Sign In</button>
+            </Link>
           </form>
         </div>
+        <br />
+        <br />
         <br />
         <br />
         <br />

@@ -12,13 +12,18 @@ const Boxes = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: inherit;
-  // border: 5px solid #5857a9; // changed color from black to purple
   width: 90%;
   margin: auto;
   padding: 5px;
+  // background: #c0eef0;
 `;
 
 // STYLING AND FUNCTIONALITY OF UPVOTES MOVED TO Upvote.js
+
+/*
+Darker teal color: #3EBDC2
+Powder blue: #C0EEF0
+*/
 
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
 const GetIssues = () => {
@@ -27,7 +32,7 @@ const GetIssues = () => {
   const [issueForm, setIssueForm] = useState({
     issue_name: "",
     issue_location: "",
-    categoryId: "",
+    category: "",
     priority: "",
     imgurl: "",
     issue_details: ""
@@ -52,7 +57,7 @@ const GetIssues = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [issues]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -62,7 +67,7 @@ const GetIssues = () => {
         setIssueForm({
           issue_name: "",
           issue_location: "",
-          categoryId: "",
+          category: "",
           priority: "",
           imgurl: "",
           issue_details: ""
@@ -74,6 +79,7 @@ const GetIssues = () => {
         console.log(err);
       });
   };
+  //SET STATE TO RESPONSE
 
   const handleDelete = id => {
     axiosWithAuth()
@@ -85,11 +91,10 @@ const GetIssues = () => {
         setIssueForm(issueForm.filter(item => item.id !== id));
       });
   };
-  //SET STATE TO RESPONSE
 
   return (
     <div className="issues">
-      <h2>Issue I've created</h2>
+      <h2>Issues Created by Neighbors</h2>
       <Boxes>
         {issues.map(cf => (
           // refactored element tags for styling purposes
@@ -107,7 +112,7 @@ const GetIssues = () => {
                   Issue Location: <h5>{cf.issue_location}</h5>
                 </h4>
                 <h4>
-                  Category Id: <h5>{cf.categoryId}</h5>
+                  Category Id: <h5>{cf.category}</h5>
                 </h4>
                 <h4>
                   Priority: <h5>{cf.priority}</h5>
@@ -149,9 +154,9 @@ const GetIssues = () => {
         <br />
         <input
           type="text"
-          name="categoryId"
+          name="category"
           placeholder="Category"
-          value={issueForm.categoryId}
+          value={issueForm.category}
           onChange={handleChange}
         />
         <br />
