@@ -16,18 +16,28 @@ const Boxes = styled.div`
   padding: 5px;
 `;
 
+// added styling for upvote button
+const UpvoteBtn = styled.button`
+  width: 5rem;
+  height: 2rem;
+`;
+
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
 const GetIssues = () => {
   const { events, setEvents } = useContext(IssueContext);
   const [issues, setIssues] = useState([]);
   const [issueForm, setIssueForm] = useState({
-    issue_name: '',
-    issue_location: '',
-    categoryId: '',
-    priority: '',
-    imgurl: '',
-    issue_details: '',
+    issue_name: "",
+    issue_location: "",
+    categoryId: "",
+    priority: "",
+    imgurl: "",
+    issue_details: ""
   });
+
+  // for upvote functionality
+  const [upvotes, setUpvotes] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
   const handleChange = e => {
     setIssueForm({ ...issueForm, [e.target.name]: e.target.value });
@@ -38,7 +48,7 @@ const GetIssues = () => {
       .get("/api/issues", issues)
       .then(res => {
         console.log(res);
-        setIssues(res.data);
+        setIssues(res.data.issue); // should be res.data.issue instead of res.data
       })
 
       .catch(err => {
@@ -52,12 +62,12 @@ const GetIssues = () => {
       .post("/api/issues", issueForm)
       .then(res => {
         setIssueForm({
-          issue_name: '',
-          issue_location: '',
-          categoryId: '',
-          priority: '',
-          imgurl: '',
-          issue_details: ''
+          issue_name: "",
+          issue_location: "",
+          categoryId: "",
+          priority: "",
+          imgurl: "",
+          issue_details: ""
         });
         setEvents([...events, res.data]);
         setIssues([...issues, res.data]);
@@ -99,11 +109,26 @@ const GetIssues = () => {
               Priority: <p>{cf.priority}</p>
             </h4>
             <h4>
-              Image URL: <p>{cf.imgurl}</p>
+              {/* Image URL: <p>{cf.imgurl}</p> */}
+              Image URL: <img src={cf.imgurl} alt="image" />{" "}
+              {/* changed image url to render actual images */}
             </h4>
             <h4>
               Issue Details: <p>{cf.issue_details}</p>
             </h4>
+            {/* ADDED UPVOTE FUNCTIONALITY */}
+            <div className="upvote-count">
+              <p>{upvotes} upvotes</p>
+              <UpvoteBtn
+                onClick={() => {
+                  setUpvotes(upvotes + 1);
+                  setDisabled(true);
+                }}
+                disabled={disabled}
+              >
+                Upvote
+              </UpvoteBtn>
+            </div>
             <button onClick={() => handleDelete(cf.id)}>Delete</button>
             <UpdateIssues id={cf.id} updateInfo={issueForm} />
           </div>
