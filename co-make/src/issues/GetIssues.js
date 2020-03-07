@@ -3,6 +3,8 @@ import IssueContext from "../contexts/IssueContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import UpdateIssues from "./UpdateIssues";
 import styled from "styled-components";
+import { ActionBtns } from "../components/Style";
+import Upvote from "./Upvote";
 
 const Boxes = styled.div`
   display: flex;
@@ -10,17 +12,13 @@ const Boxes = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: inherit;
-  border: 5px solid black;
-  width: 50%;
+  // border: 5px solid #5857a9; // changed color from black to purple
+  width: 90%;
   margin: auto;
   padding: 5px;
 `;
 
-// added styling for upvote button
-const UpvoteBtn = styled.button`
-  width: 5rem;
-  height: 2rem;
-`;
+// STYLING AND FUNCTIONALITY OF UPVOTES MOVED TO Upvote.js
 
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
 const GetIssues = () => {
@@ -94,43 +92,40 @@ const GetIssues = () => {
       <h2>Issue I've created</h2>
       <Boxes>
         {issues.map(cf => (
-          <div key={cf.id}>
+          // refactored element tags for styling purposes
+          <div key={cf.id} className="issue-card">
             <br />
             <h4>
-              Issue: <p>{cf.issue_name}</p>
+              Issue: <h5>{cf.issue_name}</h5>
             </h4>
-            <h4>
-              Issue Location: <p>{cf.issue_location}</p>
-            </h4>
-            <h4>
-              Category Id: <p>{cf.categoryId}</p>
-            </h4>
-            <h4>
-              Priority: <p>{cf.priority}</p>
-            </h4>
-            <h4>
-              {/* Image URL: <p>{cf.imgurl}</p> */}
-              Image URL: <img src={cf.imgurl} alt="image" />{" "}
-              {/* changed image url to render actual images */}
-            </h4>
-            <h4>
-              Issue Details: <p>{cf.issue_details}</p>
-            </h4>
-            {/* ADDED UPVOTE FUNCTIONALITY */}
-            <div className="upvote-count">
-              <p>{upvotes} upvotes</p>
-              <UpvoteBtn
-                onClick={() => {
-                  setUpvotes(upvotes + 1);
-                  setDisabled(true);
-                }}
-                disabled={disabled}
-              >
-                Upvote
-              </UpvoteBtn>
+            <div className="issue-desc">
+              <div className="issue-img">
+                <img src={cf.imgurl} alt="image" />
+              </div>
+              <div className="issue-details">
+                <h4>
+                  Issue Location: <h5>{cf.issue_location}</h5>
+                </h4>
+                <h4>
+                  Category Id: <h5>{cf.categoryId}</h5>
+                </h4>
+                <h4>
+                  Priority: <h5>{cf.priority}</h5>
+                </h4>
+                <h4>
+                  Issue Details: <h5>{cf.issue_details}</h5>
+                </h4>
+              </div>
             </div>
-            <button onClick={() => handleDelete(cf.id)}>Delete</button>
-            <UpdateIssues id={cf.id} updateInfo={issueForm} />
+            {/* ADDED UPVOTE FUNCTIONALITY */}
+            <div className="issue-actions">
+              {/* moved Upvote function to Upvote.js */}
+              <Upvote id={cf.id} />
+              <ActionBtns onClick={() => handleDelete(cf.id)}>
+                Delete
+              </ActionBtns>
+              <UpdateIssues id={cf.id} updateInfo={issueForm} />
+            </div>
           </div>
         ))}
       </Boxes>
