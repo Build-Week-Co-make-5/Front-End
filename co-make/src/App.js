@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import IssueContext from "./contexts/IssueContext";
 import login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
-import UserDash from "./components/UserDash";
+import UserDashCli from "./components/UserDashCli";
 import Navigation from "./components/Header";
 import SignUp from "./components/Signup";
 import GetIssues from "./issues/GetIssues";
@@ -24,7 +24,7 @@ function App() {
           {/* <h1>Neighborhood Issues</h1> */}
           <Route exact path="/" component={login} />
           <Route path="/SignUp" component={SignUp} />
-          <PrivateRoute exact path="/protected" component={UserDash} />
+          <PrivateRoute exact path="/protected" component={UserDashCli} />
           <PrivateRoute exact path="/issues" component={GetIssues} />
         </div>
       </IssueContext.Provider>

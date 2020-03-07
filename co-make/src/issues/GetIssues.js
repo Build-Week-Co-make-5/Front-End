@@ -14,6 +14,7 @@ const Boxes = styled.div`
   width: 50%;
   margin: auto;
   padding: 5px;
+  background: #c0eef0;
 `;
 
 // added styling for upvote button
@@ -22,6 +23,11 @@ const UpvoteBtn = styled.button`
   height: 2rem;
 `;
 
+/*
+Darker teal color: #3EBDC2
+Powder blue: #C0EEF0
+*/
+
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
 const GetIssues = () => {
   const { events, setEvents } = useContext(IssueContext);
@@ -29,7 +35,7 @@ const GetIssues = () => {
   const [issueForm, setIssueForm] = useState({
     issue_name: "",
     issue_location: "",
-    categoryId: "",
+    category: "",
     priority: "",
     imgurl: "",
     issue_details: ""
@@ -54,7 +60,7 @@ const GetIssues = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [issues]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -64,7 +70,7 @@ const GetIssues = () => {
         setIssueForm({
           issue_name: "",
           issue_location: "",
-          categoryId: "",
+          category: "",
           priority: "",
           imgurl: "",
           issue_details: ""
@@ -76,6 +82,7 @@ const GetIssues = () => {
         console.log(err);
       });
   };
+  //SET STATE TO RESPONSE
 
   const handleDelete = id => {
     axiosWithAuth()
@@ -87,11 +94,10 @@ const GetIssues = () => {
         setIssueForm(issueForm.filter(item => item.id !== id));
       });
   };
-  //SET STATE TO RESPONSE
 
   return (
     <div className="issues">
-      <h2>Issue I've created</h2>
+      <h2>Issues Created by Neighbors</h2>
       <Boxes>
         {issues.map(cf => (
           <div key={cf.id}>
@@ -103,14 +109,14 @@ const GetIssues = () => {
               Issue Location: <p>{cf.issue_location}</p>
             </h4>
             <h4>
-              Category Id: <p>{cf.categoryId}</p>
+              Category: <p>{cf.category}</p>
             </h4>
             <h4>
               Priority: <p>{cf.priority}</p>
             </h4>
             <h4>
               {/* Image URL: <p>{cf.imgurl}</p> */}
-              Image URL: <img src={cf.imgurl} alt="image" />{" "}
+              Image URL: <img src={cf.imgurl} alt="Issue" />{" "}
               {/* changed image url to render actual images */}
             </h4>
             <h4>
@@ -154,9 +160,9 @@ const GetIssues = () => {
         <br />
         <input
           type="text"
-          name="categoryId"
+          name="category"
           placeholder="Category"
-          value={issueForm.categoryId}
+          value={issueForm.category}
           onChange={handleChange}
         />
         <br />

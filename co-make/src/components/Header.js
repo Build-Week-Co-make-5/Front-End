@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Route } from "react-router-dom";
+import CM from "../images/CM.png";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -26,6 +27,7 @@ export function Navigation() {
           <h1 className="navbar-brand" to={"/"}>
             CO-MAKE NEIGHBORHOOD
           </h1>
+          <img src={CM} alt="logo" />
         </div>
         <Links className="nav navbar-nav">
           {/* <HeaderLink><NavLink exact to={'/'}>Home</NavLink></HeaderLink> */}
@@ -35,9 +37,20 @@ export function Navigation() {
           <HeaderLink>
             <NavLink to={"/"}>Log In</NavLink>
           </HeaderLink>
+          <HeaderLink>
+            <NavLink to={"/logout"}>Log Out</NavLink>
+          </HeaderLink>
+          <HeaderLink>
+            <NavLink to={"/issues"}>Issues</NavLink>
+          </HeaderLink>
         </Links>
       </div>
     </Header>
   );
 }
 export default Navigation;
+
+/*
+<PrivateRoute exact path="/protected" component={UserDashCli} />
+<PrivateRoute exact path="/issues" component={GetIssues} />
+*/
