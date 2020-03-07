@@ -5,7 +5,7 @@ const UpdateIssues = props => {
   const [update, setUpdate] = useState({
     issue_name: "",
     issue_location: "",
-    categoryId: "",
+    category: "",
     priority: "",
     imgurl: "",
     issue_details: ""
@@ -22,10 +22,14 @@ const UpdateIssues = props => {
         console.log(err);
       });
   };
+  
+  // after edit button clicked, get request - set the value of the populated forms fields 
+  // issue_name: res.data.issue_name (back from the server)
+  // submit form, put request back to the server, ==> another get request. updte itself automatically
 
   return (
     <div className="update">
-      <button onClick={() => handleUpdate(props.id)}>Update</button>
+      <button onClick={() => handleUpdate(props.id)}>Edit</button>
     </div>
   );
 };
