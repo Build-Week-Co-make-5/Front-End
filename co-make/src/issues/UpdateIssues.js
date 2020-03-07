@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { ActionBtns } from "../components/Style"; // to style update button
 
 const UpdateIssues = props => {
   const [update, setUpdate] = useState({
@@ -29,7 +30,7 @@ const UpdateIssues = props => {
 
   return (
     <div className="update">
-      <button onClick={() => handleUpdate(props.id)}>Edit</button>
+      <ActionBtns onClick={() => handleUpdate(props.id)}>Update</ActionBtns> {/* styled button */}
     </div>
   );
 };
