@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Header = styled.div`
   background: #3ebdc2;
+  height: 5rem;
 `;
 
 /*
@@ -14,10 +15,11 @@ Powder blue: #C0EEF0
 
 const Links = styled.div`
   display: flex;
-  flex-direction: wrap;
+  flex-direction: row; // changed from wrap to row
   justify-content: space-around;
+  width: 35%;
 `;
-const HeaderLink = styled.h2``;
+const HeaderLink = styled.h4``; // changed from h2 to h4
 
 export function Navigation() {
   return (
@@ -32,16 +34,16 @@ export function Navigation() {
         <Links className="nav navbar-nav">
           {/* <HeaderLink><NavLink exact to={'/'}>Home</NavLink></HeaderLink> */}
           <HeaderLink>
-            <NavLink to={"/SignUp"}>Sign-Up</NavLink>
+            <NavLink className="nav-links" to={"/SignUp"}>Sign-Up</NavLink> {/* added className for styling */}
           </HeaderLink>
           <HeaderLink>
-            <NavLink to={"/"}>Log In</NavLink>
+            <NavLink className="nav-links" to={"/"}>Log In</NavLink> {/* added className for styling */}
           </HeaderLink>
           <HeaderLink>
-            <NavLink to={"/logout"}>Log Out</NavLink>
+            <NavLink className="nav-links" to={"/logout"}>Log Out</NavLink>
           </HeaderLink>
           <HeaderLink>
-            <NavLink to={"/issues"}>Issues</NavLink>
+            <NavLink className="nav-links" to={"/issues"}>Issues</NavLink>
           </HeaderLink>
         </Links>
       </div>
