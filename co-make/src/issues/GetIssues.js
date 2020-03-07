@@ -54,7 +54,7 @@ const GetIssues = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [issues]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -110,7 +110,7 @@ const GetIssues = () => {
             </h4>
             <h4>
               {/* Image URL: <p>{cf.imgurl}</p> */}
-              Image URL: <img src={cf.imgurl} alt="image" />{" "}
+              Image URL: <img src={cf.imgurl} alt="Issue" />{" "}
               {/* changed image url to render actual images */}
             </h4>
             <h4>

@@ -35,9 +35,17 @@ export function Navigation() {
           <HeaderLink>
             <NavLink to={"/"}>Log In</NavLink>
           </HeaderLink>
+          <HeaderLink>
+            <NavLink to={"/issues"}>Issues</NavLink>
+          </HeaderLink>
         </Links>
       </div>
     </Header>
   );
 }
 export default Navigation;
+
+/*
+<PrivateRoute exact path="/protected" component={UserDashCli} />
+<PrivateRoute exact path="/issues" component={GetIssues} />
+*/
