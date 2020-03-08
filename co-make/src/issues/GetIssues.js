@@ -39,8 +39,9 @@ const GetIssues = () => {
   });
 
   // for upvote functionality
-  const [upvotes, setUpvotes] = useState(0);
-  const [disabled, setDisabled] = useState(false);
+  // const [upvotes, setUpvotes] = useState(0);
+  // const [disabled, setDisabled] = useState(false);
+  // UPDATE: MOVED UPVOTE FUNCTIONALITY TO UPVOTE.JS
 
   const handleChange = e => {
     setIssueForm({ ...issueForm, [e.target.name]: e.target.value });
@@ -88,14 +89,14 @@ const GetIssues = () => {
       .then(res => {
         console.log(res);
         axiosWithAuth()
-        .get("/api/issues")
-        .then(res => {
-        console.log(res);
-        setIssues(res.data.issue); // should be res.data.issue instead of res.data
-      })
-      .catch(err => {
-        console.log(err);
-      });
+          .get("/api/issues")
+          .then(res => {
+            console.log(res);
+            setIssues(res.data.issue); // should be res.data.issue instead of res.data
+          })
+          .catch(err => {
+            console.log(err);
+          });
       });
   };
 
@@ -111,6 +112,8 @@ const GetIssues = () => {
             <h4>
               Issue: <p>{cf.issue_name}</p>
             </h4>
+            {/* Organised the commented out code below into the div with className="issue-desc" for styling underneath */}
+            {/* 
             <h4>
               Issue Location: <p>{cf.issue_location}</p>
             </h4>
@@ -125,10 +128,10 @@ const GetIssues = () => {
             </h4>:null}
             <h4>
               Issue Details: <p>{cf.issue_details}</p>
-            </h4>
-            <div className="issue-desc">
+            </h4> */}
+            <div className="issue-desc"> {/* this is the div I created to replace the div above for styling purposes in App.css */}
               <div className="issue-img">
-                <img src={cf.imgurl} alt="image" />
+                {cf.imgurl ? <img src={cf.imgurl} /> : null}
               </div>
               <div className="issue-details">
                 <h4>
