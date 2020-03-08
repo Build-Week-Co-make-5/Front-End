@@ -38,7 +38,7 @@ const EditIssues = props => {
 
   return (
     <div className="edit">
-      <ActionBtns onClick={() => handleEdit(props.id)}>Update</ActionBtns>{" "}
+      <ActionBtns onClick={() => handleEdit(props.id)}>Edit</ActionBtns>{" "}
       {/* styled button */}
     </div>
   );

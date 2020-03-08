@@ -8,6 +8,7 @@ import UserDashCli from "./components/UserDashCli";
 import Navigation from "./components/Header";
 import SignUp from "./components/Signup";
 import GetIssues from "./issues/GetIssues";
+import EditIssues from "./issues/EditIssues";
 import "./App.css";
 
 // Darker teal color: #3EBDC2

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import IssueContext from "../contexts/IssueContext";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import EditIssues from "./EditIssues";
-import styled from "styled-components";
 import { ActionBtns } from "../components/Style";
 import Upvote from "./Upvote";
+import EditIssues from "./EditIssues";
+
+import styled from "styled-components";
 
 const Boxes = styled.div`
   display: flex;
@@ -12,12 +13,12 @@ const Boxes = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: inherit;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   margin: auto;
   padding: 5px;
-  // background: #c0eef0;
+  background: #c0eef0;
 `;
-
 // STYLING AND FUNCTIONALITY OF UPVOTES MOVED TO Upvote.js
 
 /*
@@ -53,11 +54,10 @@ const GetIssues = () => {
         console.log(res);
         setIssues(res.data.issue); // should be res.data.issue instead of res.data
       })
-
       .catch(err => {
         console.log(err);
       });
-  }, [issues]);
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -79,18 +79,24 @@ const GetIssues = () => {
         console.log(err);
       });
   };
-  //SET STATE TO RESPONSE
 
   const handleDelete = id => {
     axiosWithAuth()
       .delete(`/api/issues/${id}`)
       .then(res => {
         console.log(res);
-        setEvents(events.filter(item => item.id !== id));
-        setIssues(issues.filter(item => item.id !== id));
-        setIssueForm(issueForm.filter(item => item.id !== id));
+        axiosWithAuth()
+          .get("/api/issues")
+          .then(res => {
+            console.log(res);
+            setIssues(res.data.issue); // should be res.data.issue instead of res.data
+          })
+          .catch(err => {
+            console.log(err);
+          });
       });
   };
+  //SET STATE TO RESPONSE
 
   return (
     <div className="issues">
@@ -101,9 +107,6 @@ const GetIssues = () => {
           <div key={cf.id} className="issue-card">
             <br />
             <h4>
-<<<<<<< Updated upstream
-              Issue: <h5>{cf.issue_name}</h5>
-=======
               Issue: <p>{cf.issue_name}</p>
             </h4>
             <h4>
@@ -115,31 +118,16 @@ const GetIssues = () => {
             <h4>
               Priority: <p>{cf.priority}</p>
             </h4>
-            {cf.imgurl?<h4>Image URL <img src={cf.imgurl} />{" "}
-            </h4>:null}
+            <div className="box">
+              {cf.imgurl ? (
+                <h4>
+                  Image URL <img src={cf.imgurl} />{" "}
+                </h4>
+              ) : null}
+            </div>
             <h4>
               Issue Details: <p>{cf.issue_details}</p>
->>>>>>> Stashed changes
             </h4>
-            <div className="issue-desc">
-              <div className="issue-img">
-                <img src={cf.imgurl} alt="image" />
-              </div>
-              <div className="issue-details">
-                <h4>
-                  Issue Location: <h5>{cf.issue_location}</h5>
-                </h4>
-                <h4>
-                  Category Id: <h5>{cf.category}</h5>
-                </h4>
-                <h4>
-                  Priority: <h5>{cf.priority}</h5>
-                </h4>
-                <h4>
-                  Issue Details: <h5>{cf.issue_details}</h5>
-                </h4>
-              </div>
-            </div>
             {/* ADDED UPVOTE FUNCTIONALITY */}
             <div className="issue-actions">
               {/* moved Upvote function to Upvote.js */}
@@ -147,23 +135,21 @@ const GetIssues = () => {
               <ActionBtns onClick={() => handleDelete(cf.id)}>
                 Delete
               </ActionBtns>
-              <UpdateIssues id={cf.id} updateInfo={issueForm} />
+              <EditIssues id={cf.id} editInfo={issueForm} />
             </div>
-<<<<<<< Updated upstream
-=======
             <button onClick={() => handleDelete(cf.id)}>Delete</button>
-            <EditIssues id={cf.id} updateInfo={issueForm} />
->>>>>>> Stashed changes
+            <EditIssues id={cf.id} editInfo={issueForm} />
           </div>
         ))}
       </Boxes>
+
       <form onSubmit={handleSubmit}>
         <h5> Add an Issue</h5>
         <input
           type="text"
-          name="title"
+          name="issue_name"
           placeholder="Issue"
-          value={issueForm.title}
+          value={issueForm.issue_name}
           onChange={handleChange}
         />
         <br />
@@ -180,6 +166,30 @@ const GetIssues = () => {
           name="category"
           placeholder="Category"
           value={issueForm.category}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="text"
+          name="priority"
+          placeholder="Priority"
+          value={issueForm.priority}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="text"
+          name="imgurl"
+          placeholder="Image URL"
+          value={issueForm.imgurl}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="text"
+          name="issue_details"
+          placeholder="Issue Details"
+          value={issueForm.issue_details}
           onChange={handleChange}
         />
         <br />

@@ -29,7 +29,9 @@ export function Navigation() {
           <h1 className="navbar-brand" to={"/"}>
             CO-MAKE NEIGHBORHOOD
           </h1>
-          <img src={CM} alt="logo" />
+          <div className="icon">
+            <img src={CM} alt="logo" />
+          </div>
         </div>
         <Links className="nav navbar-nav">
           {/* <HeaderLink><NavLink exact to={'/'}>Home</NavLink></HeaderLink> */}
