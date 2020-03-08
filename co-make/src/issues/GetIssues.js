@@ -74,8 +74,8 @@ const GetIssues = () => {
           imgurl: "",
           issue_details: ""
         });
-        setEvents([...events, res.data]);
-        setIssues([...issues, res.data]);
+        setEvents([...events, res.data.issue]); // UPDATE: changed to res.data.issue to make add new issue work
+        setIssues([...issues, res.data.issue]); // UPDATE: changed to res.data.issue to make add new issue work
       })
       .catch(err => {
         console.log(err);
@@ -112,9 +112,8 @@ const GetIssues = () => {
             <h4>
               Issue: <p>{cf.issue_name}</p>
             </h4>
-            {/* Organised the commented out code below into the div with className="issue-desc" for styling underneath */}
-            {/* 
-            <h4>
+            {/* UPDATE: Organised the commented out code below into the div with className="issue-desc" for styling underneath */}
+            {/* <h4>
               Issue Location: <p>{cf.issue_location}</p>
             </h4>
             <h4>
@@ -129,22 +128,22 @@ const GetIssues = () => {
             <h4>
               Issue Details: <p>{cf.issue_details}</p>
             </h4> */}
-            <div className="issue-desc"> {/* this is the div I created to replace the div above for styling purposes in App.css */}
+            <div className="issue-desc"> {/* UPDATE: this is the div I created to replace the div above for styling purposes in App.css, changed h5 tags back to p tags */}
               <div className="issue-img">
                 {cf.imgurl ? <img src={cf.imgurl} /> : null}
               </div>
               <div className="issue-details">
                 <h4>
-                  Issue Location: <h5>{cf.issue_location}</h5>
+                  Issue Location: <p>{cf.issue_location}</p>
                 </h4>
                 <h4>
-                  Category Id: <h5>{cf.category}</h5>
+                  Category Id: <p>{cf.category}</p>
                 </h4>
                 <h4>
-                  Priority: <h5>{cf.priority}</h5>
+                  Priority: <p>{cf.priority}</p>
                 </h4>
                 <h4>
-                  Issue Details: <h5>{cf.issue_details}</h5>
+                  Issue Details: <p>{cf.issue_details}</p>
                 </h4>
               </div>
             </div>
