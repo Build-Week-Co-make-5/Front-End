@@ -118,13 +118,13 @@ const GetIssues = () => {
             <h4>
               Priority: <p>{cf.priority}</p>
             </h4>
+            <br/>
             <div className="box">
               {cf.imgurl ? (
-                <h4>
-                  Image URL <img src={cf.imgurl} />{" "}
-                </h4>
+                <img src={cf.imgurl} alt="Pic"/>
               ) : null}
             </div>
+            <br/>
             <h4>
               Issue Details: <p>{cf.issue_details}</p>
             </h4>
