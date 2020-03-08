@@ -35,7 +35,7 @@
 }
 
 /* Header.js */
-.container-fluid .navbar-header img {
+.container-fluid .navbar-header icon {
   height: 4rem;
 }
 
@@ -70,13 +70,13 @@
   align-items: center;
 }
 
-.issue-card .issue-desc .issue-img {
+.issue-card .issue-desc .issue-icon {
   width: 25%;
   border: 1px;
   background: lightgrey;
 }
 
-.issue-card .issue-desc .issue-img img {
+.issue-card .issue-desc .issue-icon icon {
   width: 100%;
   height: auto;
 }

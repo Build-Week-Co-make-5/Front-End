@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Header = styled.div`
   background: #3ebdc2;
-  height: 5rem;
+  height: 15rem;
 `;
 
 /*
@@ -53,8 +53,3 @@ export function Navigation() {
   );
 }
 export default Navigation;
-
-/*
-<PrivateRoute exact path="/protected" component={UserDashCli} />
-<PrivateRoute exact path="/issues" component={GetIssues} />
-*/

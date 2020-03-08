@@ -137,8 +137,6 @@ const GetIssues = () => {
               </ActionBtns>
               <EditIssues id={cf.id} editInfo={issueForm} />
             </div>
-            <button onClick={() => handleDelete(cf.id)}>Delete</button>
-            <EditIssues id={cf.id} editInfo={issueForm} />
           </div>
         ))}
       </Boxes>
