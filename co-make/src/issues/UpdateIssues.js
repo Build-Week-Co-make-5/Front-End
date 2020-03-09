@@ -36,6 +36,7 @@ const UpdateIssues = props => {
   const { issue, setIssue } = useContext(IssueContext);
   const [update, setUpdate] = useState(initialIssue);
   const [newIssue, setNewIssue] = useState([]);
+  const [issueArr, setIssueArr] = useState([]);
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -59,7 +60,7 @@ const UpdateIssues = props => {
 
  // HOW TO GET THE ACTUAL ISSUE ID - iss => iss.id === newIssue
   const fetchIssue = (issue) => {
-    const issueArr = update.filter(iss => iss.id === issue.id)
+    const issueArr = update.find(iss => iss.id === issue.id)
     const [extractedIssue] = issueArr;
         setNewIssue(extractedIssue);
         toggle(issue.id);

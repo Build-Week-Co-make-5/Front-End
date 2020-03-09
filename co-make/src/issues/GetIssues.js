@@ -49,10 +49,10 @@ const GetIssues = () => {
       });
   }, []);
 
-  const handleSubmit = (e,  id) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`/api/issues/${id}`, issueForm)
+      .post(`/api/issues/`, issueForm)
       .then(res => {
         setIssueForm({
           issue_name: "",
@@ -93,8 +93,8 @@ const GetIssues = () => {
     <div className="issues">
       <h2>Issues Created by Neighbors</h2>
       <Boxes>
-        {issues.map((cf, index) => (
-          <div key={index} className="issue-card">
+        {issues.map(cf => (
+          <div key={cf.id} className="issue-card">
             <br />
             <h4>
               Issue: <p>{cf.issue_name}</p>
