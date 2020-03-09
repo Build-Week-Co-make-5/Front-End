@@ -27,7 +27,9 @@ export function Navigation() {
       <div className="container-fluid">
         <div className="navbar-header">
           <h1 className="navbar-brand" to={"/"}>
+            <a href="https://comakemarket.netlify.com/" style={{textDecoration: "underline overline", color: "black"}}>
             CO-MAKE NEIGHBORHOOD
+            </a>
           </h1>
           <img src={CM} alt="logo" />
         </div>
@@ -51,8 +53,3 @@ export function Navigation() {
   );
 }
 export default Navigation;
-
-/*
-<PrivateRoute exact path="/protected" component={UserDashCli} />
-<PrivateRoute exact path="/issues" component={GetIssues} />
-*/
