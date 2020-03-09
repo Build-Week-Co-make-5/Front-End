@@ -15,15 +15,8 @@ const Boxes = styled.div`
   width: 90%;
   margin: auto;
   padding: 5px;
-  // background: #c0eef0;
+  background: #c0eef0;
 `;
-
-// STYLING AND FUNCTIONALITY OF UPVOTES MOVED TO Upvote.js
-
-/*
-Darker teal color: #3EBDC2
-Powder blue: #C0EEF0
-*/
 
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
 const GetIssues = () => {
@@ -37,11 +30,6 @@ const GetIssues = () => {
     imgurl: "",
     issue_details: ""
   });
-
-  // for upvote functionality
-  // const [upvotes, setUpvotes] = useState(0);
-  // const [disabled, setDisabled] = useState(false);
-  // UPDATE: MOVED UPVOTE FUNCTIONALITY TO UPVOTE.JS
 
   const handleChange = e => {
     setIssueForm({ ...issueForm, [e.target.name]: e.target.value });
@@ -61,10 +49,10 @@ const GetIssues = () => {
       });
   }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e,  id) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/api/issues", issueForm)
+      .post(`/api/issues/${id}`, issueForm)
       .then(res => {
         setIssueForm({
           issue_name: "",
@@ -105,32 +93,15 @@ const GetIssues = () => {
     <div className="issues">
       <h2>Issues Created by Neighbors</h2>
       <Boxes>
-        {issues.map(cf => (
-          // refactored element tags for styling purposes
-          <div key={cf.id} className="issue-card">
+        {issues.map((cf, index) => (
+          <div key={index} className="issue-card">
             <br />
             <h4>
               Issue: <p>{cf.issue_name}</p>
             </h4>
-            {/* UPDATE: Organised the commented out code below into the div with className="issue-desc" for styling underneath */}
-            {/* <h4>
-              Issue Location: <p>{cf.issue_location}</p>
-            </h4>
-            <h4>
-              Category: <p>{cf.category}</p>
-            </h4>
-            <h4>
-              Priority: <p>{cf.priority}</p>
-            </h4>
-            {cf.imgurl?<h4>Image URL <img src={cf.imgurl} />{" "}
-            
-            </h4>:null}
-            <h4>
-              Issue Details: <p>{cf.issue_details}</p>
-            </h4> */}
-            <div className="issue-desc"> {/* UPDATE: this is the div I created to replace the div above for styling purposes in App.css, changed h5 tags back to p tags */}
+            <div className="issue-desc"> 
               <div className="issue-img">
-                {cf.imgurl ? <img src={cf.imgurl} /> : null}
+                {cf.imgurl ? <img src={cf.imgurl} alt="Pic" /> : null}
               </div>
               <div className="issue-details">
                 <h4>
@@ -147,9 +118,7 @@ const GetIssues = () => {
                 </h4>
               </div>
             </div>
-            {/* ADDED UPVOTE FUNCTIONALITY */}
             <div className="issue-actions">
-              {/* moved Upvote function to Upvote.js */}
               <Upvote id={cf.id} />
               <ActionBtns onClick={() => handleDelete(cf.id)}>
                 Delete
@@ -217,3 +186,4 @@ const GetIssues = () => {
   );
 };
 export default GetIssues;
+// Add a button in the issue component that routes you to your new route with the issues's id as the URL param
