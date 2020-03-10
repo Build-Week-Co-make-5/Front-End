@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Route } from "react-router-dom";
 import CM from "../images/CM.png";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Header = styled.div`
   background: #3ebdc2;
@@ -22,13 +23,21 @@ const Links = styled.div`
 const HeaderLink = styled.h4``; // changed from h2 to h4
 
 export function Navigation() {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    return localStorage.removeItem("token"), history.push("/");
+  };
+
   return (
     <Header className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
           <h1 className="navbar-brand" to={"/"}>
-            <a href="https://comakemarket.netlify.com/" style={{textDecoration: "underline overline", color: "black"}}>
-            CO-MAKE NEIGHBORHOOD
+            <a
+              href="https://comakemarket.netlify.com/"
+              style={{ textDecoration: "underline overline", color: "black" }}>
+              CO-MAKE NEIGHBORHOOD
             </a>
           </h1>
           <img src={CM} alt="logo" />
@@ -36,16 +45,29 @@ export function Navigation() {
         <Links className="nav navbar-nav">
           {/* <HeaderLink><NavLink exact to={'/'}>Home</NavLink></HeaderLink> */}
           <HeaderLink>
-            <NavLink className="nav-links" to={"/SignUp"}>Sign-Up</NavLink> {/* added className for styling */}
+            <NavLink className="nav-links" to={"/SignUp"}>
+              Sign-Up
+            </NavLink>{" "}
+            {/* added className for styling */}
           </HeaderLink>
           <HeaderLink>
-            <NavLink className="nav-links" to={"/"}>Log In</NavLink> {/* added className for styling */}
+            <NavLink className="nav-links" to={"/"}>
+              Log In
+            </NavLink>{" "}
+            {/* added className for styling */}
           </HeaderLink>
           <HeaderLink>
-            <NavLink className="nav-links" to={"/logout"}>Log Out</NavLink>
+            <NavLink
+              className="nav-links"
+              to={"/logout"}
+              onClick={handleLogout}>
+              Log Out
+            </NavLink>
           </HeaderLink>
           <HeaderLink>
-            <NavLink className="nav-links" to={"/issues"}>Issues</NavLink>
+            <NavLink className="nav-links" to={"/issues"}>
+              Issues
+            </NavLink>
           </HeaderLink>
         </Links>
       </div>
