@@ -74,8 +74,9 @@ const UpdateIssues = ({ id }) => {
       value = parseInt(value, 10);
     } else {
       setNewIssue({...issue,
-  [ev.target.name]: value
+        [ev.target.name]: value
     });
+    console.log("TARGET VALUE!", value)
     }
   };
 
@@ -83,7 +84,7 @@ const UpdateIssues = ({ id }) => {
     // make a PUT request to edit an issue
     e.preventDefault()
     axiosWithAuth()
-      .put("/api/issues/{id}", issue)
+      .put(`/api/issues/${id}`, newIssue)
       .then(res => {
         console.log("RES FROM SERVER!", res)
         setNewIssue([...newIssue.filter(item => item.id !== id), res.data]);
