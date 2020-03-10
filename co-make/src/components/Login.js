@@ -28,8 +28,9 @@ const StyleForm = styled.div`
 const Login = props => {
   const [loginz, setLoginz] = useState({
     email: "",
-    password: ""
+    password: "",
   });
+  console.log("USE STATE LOG!");
 
   const handleChange = e => {
     setLoginz({
@@ -39,72 +40,65 @@ const Login = props => {
   };
 
   const handleSubmit = e => {
+    console.log("RES FROM BE!");
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/login", loginz)
       .then(res => {
-        const token = 
         localStorage.setItem("token", res.data.token);
-        // Means this will be user id of 1
-        if (res.data.token !== token) {
-          props.history.push("/Signup");
-          // will be admin of id 2
-        } else if (res.data.token === token) {
-          props.history.push("/protected");
-        }
+          props.history.push("/issues");
+      })
+      .catch(error => {
+        props.history.push("/Signup");
       });
   };
 
   return (
-    <>
-      <LoginBox>
-        <div>
-          <br />
-          <h1>Neighborhood Issues</h1>
-          <h5>Login</h5>
-          <img src={CM} alt="logo" />
-          <br />
-          <form onSubmit={handleSubmit}>
-            <StyleForm>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={loginz.email}
-                onChange={handleChange}
-              />
-              <br />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={loginz.password}
-                onChange={handleChange}
-              />
-            </StyleForm>
+    <LoginBox>
+      <div>
+        <br />
+        <h1>Neighborhood Issues</h1>
+        <h5>Login</h5>
+        <img src={CM} alt="logo" />
+        <br />
+        <form onSubmit={handleSubmit}>
+          <StyleForm>
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={loginz.email}
+              onChange={handleChange}
+            />
             <br />
-            <Link to="/issues">
-              <button type="submit">Sign In</button>
-            </Link>
-          </form>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <footer>
-          <h6>Copy Right 2020 CO-MAKE Neighborhood Issues</h6>
-        </footer>
-      </LoginBox>
-    </>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={loginz.password}
+              onChange={handleChange}
+            />
+          </StyleForm>
+          <br />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <footer>
+        <h6>Copy Right 2020 CO-MAKE Neighborhood Issues</h6>
+      </footer>
+    </LoginBox>
   );
 };
 
