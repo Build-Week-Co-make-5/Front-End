@@ -97,11 +97,7 @@ const UpdateIssues = ({ id }) => {
 
   return (
     <div className="update">
-      {/* {Object.keys(newIssue).map(param => { */}
-        {/* return ( */}
         <button onClick={fetchIssue}>Update</button>
-        {/* ) */}
-      {/* })} */}
       <Collapse isOpen={isOpen}>
         <form onSubmit={handleSubmit} className="forms">
           <h2>Update an Issue</h2>

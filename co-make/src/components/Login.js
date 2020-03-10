@@ -43,12 +43,13 @@ const Login = props => {
     axiosWithAuth()
       .post("/api/auth/login", loginz)
       .then(res => {
+        const token = 
         localStorage.setItem("token", res.data.token);
-        //Means this will be user id of 1
-        if (res.data.user) {
-          props.history.push("/user");
-          //will be admin of id 2
-        } else if (res.data.user) {
+        // Means this will be user id of 1
+        if (res.data.token !== token) {
+          props.history.push("/Signup");
+          // will be admin of id 2
+        } else if (res.data.token === token) {
           props.history.push("/protected");
         }
       });
