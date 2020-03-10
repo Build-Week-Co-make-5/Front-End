@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import IssueContext from "./contexts/IssueContext";
 import login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
@@ -8,10 +7,8 @@ import UserDashCli from "./components/UserDashCli";
 import Navigation from "./components/Header";
 import SignUp from "./components/Signup";
 import GetIssues from "./issues/GetIssues";
+import UpdateIssues from "./issues/UpdateIssues";
 import "./App.css";
-
-// Darker teal color: #3EBDC2
-// Powder blue: #C0EEF0
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -26,6 +23,7 @@ function App() {
           <Route path="/SignUp" component={SignUp} />
           <PrivateRoute exact path="/protected" component={UserDashCli} />
           <PrivateRoute exact path="/issues" component={GetIssues} />
+          <PrivateRoute exact path="/update-issue/:id" component={UpdateIssues} />
         </div>
       </IssueContext.Provider>
     </Router>
