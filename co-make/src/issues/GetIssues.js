@@ -42,7 +42,7 @@ const GetIssues = () => {
       .get("/api/issues")
       .then(res => {
         console.log(res);
-        setIssues(res.data.issue); // should be res.data.issue instead of res.data
+        setIssues(res.data.issue); 
       })
       .catch(err => {
         console.log(err);
@@ -123,6 +123,7 @@ const GetIssues = () => {
               <ActionBtns onClick={() => handleDelete(cf.id)}>
                 Delete
               </ActionBtns>
+              {/* <UpdateBtn id={cf.id} /> */}
               <UpdateIssues id={cf.id} updateInfo={issueForm} />
             </div>
           </div>

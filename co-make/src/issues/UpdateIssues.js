@@ -8,7 +8,7 @@ Add a button in the issue component that routes you to your new route with the i
 3. Pre-populate with all of the data - You usually need a PUT request to update a form
 4. Click on update button
     - history.push to update form with :id of the item
-    - update form will take in the item list as props
+    - update form will take in the item list as id
     - in the update form we find the item clicked from the list via the id param
     - populate the form with that item's data.
 
@@ -32,12 +32,10 @@ const initialIssue = {
   issue_details: ""
 };
 
-const UpdateIssues = props => {
+const UpdateIssues = ({ id }) => {
   const { issue, setIssue } = useContext(IssueContext);
   const [update, setUpdate] = useState(initialIssue);
   const [newIssue, setNewIssue] = useState([]);
-  const [issueArr, setIssueArr] = useState([]);
-  const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -47,7 +45,7 @@ const UpdateIssues = props => {
       .then(res => {
         console.log(res);
         setUpdate(res.data.issue); 
-        setNewIssue(res.data.issue.id);
+        setNewIssue(res.data.issue);
       })
       .catch(err => {
         console.log(err);
@@ -59,11 +57,12 @@ const UpdateIssues = props => {
  // MAKING A COPY OF THE ISSUE COMING BACK FROM BE, PUT REQUEST ONLY ONE ISSUE AND TRYING TO DIG OUT THAT ID SO THAT THE SYSTEM KNOWS WHICH ID TO ACCESS. MIGHT BE THE WORFLOW THAT'S CAUSING TO GET THE ID. 
 
  // HOW TO GET THE ACTUAL ISSUE ID - iss => iss.id === newIssue
+ // If you are a string, be a number! parseInt()
   const fetchIssue = (issue) => {
-    const issueArr = update.find(iss => iss.id === issue.id)
+    const issueArr = update.filter(iss => parseInt(iss.id) === parseInt(id))
     const [extractedIssue] = issueArr;
         setNewIssue(extractedIssue);
-        toggle(issue.id);
+        toggle(id);
         console.log("FETCH ISSUE!", extractedIssue);
   };
 
@@ -74,30 +73,34 @@ const UpdateIssues = props => {
     if (ev.target.name === 'priority') {
       value = parseInt(value, 10);
     } else {
-      setUpdate({...issue,
+      setNewIssue({...issue,
   [ev.target.name]: value
     });
     }
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    // make a PUT request to edit the item
+    // make a PUT request to edit an issue
+    e.preventDefault()
     axiosWithAuth()
-      .put(`/api/issues/${id}`, issue)
+      .put("/api/issues/{id}", issue)
       .then(res => {
+        console.log("RES FROM SERVER!", res)
+        setNewIssue([...newIssue.filter(item => item.id !== id), res.data]);
         // res.data is the FULL array with updated issue - API - automatically 
         // That's not always the case. Sometimes you need to build your own updated array 
-        // const newIssueArr = props.issues.map
-        setUpdate(initialIssue)
-        props.history.push('/')
+        // const newIssueArr = id.issues.map
       })
       .catch(err => console.log("That's an error!", err));
   };
 
   return (
     <div className="update">
-      <button onClick={fetchIssue}>Update</button>
+      {/* {Object.keys(newIssue).map(param => { */}
+        {/* return ( */}
+        <button onClick={fetchIssue}>Update</button>
+        {/* ) */}
+      {/* })} */}
       <Collapse isOpen={isOpen}>
         <form onSubmit={handleSubmit} className="forms">
           <h2>Update an Issue</h2>
@@ -105,42 +108,42 @@ const UpdateIssues = props => {
             type="text"
             name="issue_name"
             placeholder="issue_name"
-            value={update.issue_name}
+            value={newIssue.issue_name}
             onChange={handleChange}
           />
           <input
             type="text"
             name="issue_location"
             placeholder="issue_location"
-            value={update.issue_location}
+            value={newIssue.issue_location}
             onChange={handleChange}
           />
           <input
             type="text"
             name="category"
             placeholder="category"
-            value={update.category}
+            value={newIssue.category}
             onChange={handleChange}
           />
           <input
             type="text"
             name="priority"
             placeholder="priority"
-            value={update.priority}
+            value={newIssue.priority}
             onChange={handleChange}
           />
           <input
             type="text"
             name="imgurl"
             placeholder="imgurl"
-            value={update.imgurl}
+            value={newIssue.imgurl}
             onChange={handleChange}
           />
           <input
             type="text"
             name="issue_details"
             placeholder="issue_details"
-            value={update.issue_details}
+            value={newIssue.issue_details}
             onChange={handleChange}
           />
           <button className="Button">Submit Updated Issue</button>
