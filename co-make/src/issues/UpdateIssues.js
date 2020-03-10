@@ -54,9 +54,6 @@ const UpdateIssues = ({ id }) => {
 
  // When the call comes back successfully, route the user to /issues where they will see the updated issue list without the deleted issue * /
 
- // MAKING A COPY OF THE ISSUE COMING BACK FROM BE, PUT REQUEST ONLY ONE ISSUE AND TRYING TO DIG OUT THAT ID SO THAT THE SYSTEM KNOWS WHICH ID TO ACCESS. MIGHT BE THE WORFLOW THAT'S CAUSING TO GET THE ID. 
-
- // HOW TO GET THE ACTUAL ISSUE ID - iss => iss.id === newIssue
  // If you are a string, be a number! parseInt()
   const fetchIssue = (issue) => {
     const issueArr = update.filter(iss => parseInt(iss.id) === parseInt(id))
@@ -87,7 +84,8 @@ const UpdateIssues = ({ id }) => {
       .put(`/api/issues/${id}`, newIssue)
       .then(res => {
         console.log("RES FROM SERVER!", res)
-        setNewIssue([...newIssue.filter(item => item.id !== id), res.data]);
+        // setNewIssue([...newIssue.filter(item => item.id !== id), res.data]);
+        window.location.reload(false);
         // res.data is the FULL array with updated issue - API - automatically 
         // That's not always the case. Sometimes you need to build your own updated array 
         // const newIssueArr = id.issues.map
