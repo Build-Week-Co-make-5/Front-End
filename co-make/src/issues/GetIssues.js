@@ -19,7 +19,7 @@ const Boxes = styled.div`
 `;
 
 //THIS IS FOR THE USERS TO CREATE A NEW ISSUE
-const GetIssues = () => {
+const GetIssues = ({ id }) => {
   const { events, setEvents } = useContext(IssueContext);
   const [issues, setIssues] = useState([]);
   const [issueForm, setIssueForm] = useState({

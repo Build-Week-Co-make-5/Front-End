@@ -95,7 +95,7 @@ const UpdateIssues = ({ id }) => {
 
   return (
     <div className="update">
-        <button onClick={fetchIssue}>Update</button>
+      <button onClick={fetchIssue}>Update</button>
       <Collapse isOpen={isOpen}>
         <form onSubmit={handleSubmit} className="forms">
           <h2>Update an Issue</h2>
@@ -141,8 +141,10 @@ const UpdateIssues = ({ id }) => {
             value={newIssue.issue_details}
             onChange={handleChange}
           />
-          <button className="Button">Submit Updated Issue</button>
-      </form>
+          <br />
+          <br />
+          <button className="Button">Submit</button>
+        </form>
       </Collapse>
     </div>
   );
